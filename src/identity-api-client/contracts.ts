@@ -1,8 +1,8 @@
-export interface ListResponse<TResponse> {
+export type ListResponse<TResponse> = {
     items: TResponse[];
 }
 
-export interface BotResponse {
+export type BotResponse = {
     id: string;
     name: string;
     description: string;
@@ -11,15 +11,15 @@ export interface BotResponse {
     platform: string;
 }
 
-export interface GetBotByIdRequest {
+export type GetBotByIdRequest = {
     id: string
 }
 
-export interface DeleteBotRequest {
+export type DeleteBotRequest = {
     id: string
 }
 
-export interface CreateBotRequest {
+export type CreateBotRequest = {
     id: string;
     name: string;
     description: string;
@@ -28,7 +28,7 @@ export interface CreateBotRequest {
     platform: string;
 }
 
-export interface CreateBotResponse {
+export type CreateBotResponse = {
     id: string;
 }
 
