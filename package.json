@@ -3,10 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "nuxt dev -o -p 9995",
     "build": "nuxt build",
-    "dev": "nuxt dev -o",
-    "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "start": "node ./.output/server/index.mjs",
+    "generate": "nuxt generate",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
