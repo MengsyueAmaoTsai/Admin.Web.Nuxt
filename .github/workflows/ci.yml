@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: Nuxt Continuous Integration
 
 on:
   push:
