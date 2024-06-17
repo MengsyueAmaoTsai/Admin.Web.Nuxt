@@ -5,6 +5,10 @@ export default defineNuxtConfig({
 	srcDir: "src/",
 	rootDir: "./",
 	dir: {
+		pages: "pages",
+		layouts: "layouts",
 		middleware: "middlewares",
+		plugins: "plugins",
+		modules: "modules",
 	},
 });
