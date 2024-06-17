@@ -1,5 +1,5 @@
 <template>
   <div>
-    <header>Header</header>
+    <header>Hello AppNav</header>
   </div>
 </template>

@@ -1,3 +1,5 @@
 <script setup lang="ts"></script>
 
-<template><Header /><slot /><Footer /></template>
+<template>
+  <div><AppNav /><slot /><AppFooter /></div>
+</template>
