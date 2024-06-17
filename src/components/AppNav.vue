@@ -1,12 +1,40 @@
 <template>
   <div>
     <header>
-      <NuxtLink to="/">Home</NuxtLink>
-      <NuxtLink to="/files">Files</NuxtLink>
-      <NuxtLink to="/users">Users</NuxtLink>
-      <NuxtLink to="/signal-sources">Signal Sources</NuxtLink>
-      <NuxtLink to="/signals">Signals</NuxtLink>
-      <NuxtLink to="/about">About</NuxtLink>
+      <ul>
+        <li v-for="item in menuItems">
+          <NuxtLink :to="item.path">{{ item.title }}</NuxtLink>
+        </li>
+      </ul>
     </header>
   </div>
 </template>
+
+<script setup lang="ts">
+const menuItems = [
+  {
+    title: "Home",
+    path: "/",
+  },
+  {
+    title: "Files",
+    path: "/files",
+  },
+  {
+    title: "Users",
+    path: "/users",
+  },
+  {
+    title: "Signal Sources",
+    path: "/signal-sources",
+  },
+  {
+    title: "Signals",
+    path: "/signals",
+  },
+  {
+    title: "About",
+    path: "/about",
+  },
+];
+</script>
