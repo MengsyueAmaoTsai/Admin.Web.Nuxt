@@ -4,4 +4,7 @@ export default defineNuxtConfig({
 	ssr: true,
 	srcDir: "src/",
 	rootDir: "./",
+	dir: {
+		middleware: "middlewares",
+	},
 });
