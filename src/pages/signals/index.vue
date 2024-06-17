@@ -4,7 +4,21 @@
       Total Signals: {{ signals.items.length }} Average Latency:
       {{ averageLatency }} seconds
     </h3>
-    <div v-for="signal in signals.items" :key="signal.id">{{ signal }}</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Latency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="signal in signals.items" :key="signal.id">
+          <td>{{ signal.time }}</td>
+          <td>{{ (signal.latency / 1000).toFixed(3) }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
