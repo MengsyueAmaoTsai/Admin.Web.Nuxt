@@ -1,1 +1,3 @@
-<template><div>Hello world</div></template>
+<template></template>
+
+<script setup></script>
