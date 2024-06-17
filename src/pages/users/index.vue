@@ -14,14 +14,14 @@
     </thead>
 
     <tbody>
-      <tr v-for="user in users" :key="user.id">
+      <tr v-for="user in users.items" :key="user.id">
         <td>{{ user.id }}</td>
         <td>{{ user.name }}</td>
         <td>
           {{ user.description }}
         </td>
         <td>
-          <button>Details</button>
+          <NuxtLink :to="`/users/${user.id}`">Details</NuxtLink>
           <button>Delete</button>
         </td>
       </tr>
@@ -30,8 +30,10 @@
 </template>
 
 <script lang="ts" setup>
-const users = [
-  { id: 1, email: "test@gmail.com", name: "User 1" },
-  { id: 2, email: "test2@gmail.com", name: "User 2" },
-];
+const {
+  data: users,
+  error,
+  execute,
+  refresh,
+} = await useFetch("http://localhost:11000/api/v1/users");
 </script>
