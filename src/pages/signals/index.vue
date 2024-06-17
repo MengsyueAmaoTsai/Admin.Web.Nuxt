@@ -1,9 +1,11 @@
 <template>
-  <h3>
-    Total Signals: {{ signals.items.length }} Average Latency:
-    {{ averageLatency }} seconds
-  </h3>
-  <div v-for="signal in signals.items" :key="signal.id">{{ signal }}</div>
+  <div>
+    <h3>
+      Total Signals: {{ signals.items.length }} Average Latency:
+      {{ averageLatency }} seconds
+    </h3>
+    <div v-for="signal in signals.items" :key="signal.id">{{ signal }}</div>
+  </div>
 </template>
 
 <script lang="ts" setup>

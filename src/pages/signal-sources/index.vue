@@ -1,29 +1,31 @@
 <template>
-  <h1>Signal Sources</h1>
+  <div>
+    <h1>Signal Sources</h1>
 
-  <button>Create</button>
+    <button>Create</button>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr v-for="source in signalSources.items" :key="source.id">
-        <td>{{ source.id }}</td>
-        <td>{{ source.name }}</td>
-        <td>{{ source.description }}</td>
-        <td>
-          <NuxtLink :to="`/signal-sources/${source.id}`">Details</NuxtLink>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+      <tbody>
+        <tr v-for="source in signalSources.items" :key="source.id">
+          <td>{{ source.id }}</td>
+          <td>{{ source.name }}</td>
+          <td>{{ source.description }}</td>
+          <td>
+            <NuxtLink :to="`/signal-sources/${source.id}`">Details</NuxtLink>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script lang="ts" setup>
