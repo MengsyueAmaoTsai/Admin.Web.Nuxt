@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "nuxt dev -o -p 9995",
+    "dev:http": "nuxt dev -o -p 9995 --https --ssl-cert ./certs/localhost.pem --ssl-key ./certs/localhost-key.pem",
     "build": "nuxt build",
     "preview": "nuxt preview",
     "start": "node ./.output/server/index.mjs",
