@@ -6,3 +6,8 @@
 ## References
 
 - [Nuxt3 Full Course (YouTube)](https://www.youtube.com/watch?v=5dQMQ1BwUyc&ab_channel=Bitfumes)
+- [Mastering Advanced Nuxt.js (YouTube)](https://www.youtube.com/watch?v=XnWXWye8sBM&ab_channel=ThisDotMedia)
+
+## Modules
+
+- vueuse
