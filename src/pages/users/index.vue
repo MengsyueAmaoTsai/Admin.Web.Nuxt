@@ -38,7 +38,9 @@
 
       <tbody>
         <tr v-for="user in users.items" :key="user.id">
-          <td>{{ user.name }}</td>
+          <td>
+            <NuxtLink :to="`/users/${user.id}`">{{ user.name }}</NuxtLink>
+          </td>
           <td>{{ user.email }}</td>
         </tr>
       </tbody>
@@ -46,7 +48,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 const {
   data: users,
   error,
