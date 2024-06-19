@@ -1,37 +1,52 @@
 <template>
   <div>
-    <h1>Users</h1>
+    <h2>Users</h2>
 
-    <button>Create</button>
+    <!-- Operations -->
+    <div>
+      <button>New User</button>
+      <button>Download Users</button>
+
+      <!-- Bulk Operations -->
+      <select>
+        <option>Bulk Create</option>
+        <option>Bulk Delete</option>
+      </select>
+      <button>Refresh</button>
+
+      <!-- Manage View -->
+      <select>
+        <option>Bulk Create</option>
+        <option>Bulk Delete</option>
+      </select>
+
+      <button>Delete</button>
+    </div>
+
+    <div>
+      <input type="text" class="search" placeholder="Search..." />
+      <button>Add filter</button>
+    </div>
 
     <table>
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Email</th>
           <th>Name</th>
-          <th>Actions</th>
+          <th>Email</th>
         </tr>
       </thead>
 
       <tbody>
         <tr v-for="user in users.items" :key="user.id">
-          <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
-          <td>
-            {{ user.description }}
-          </td>
-          <td>
-            <NuxtLink :to="`/users/${user.id}`">Details</NuxtLink>
-            <button>Delete</button>
-          </td>
+          <td>{{ user.email }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 const {
   data: users,
   error,
