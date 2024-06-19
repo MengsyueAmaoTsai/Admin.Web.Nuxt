@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-	devtools: { enabled: true },
+	debug: process.env.NODE_ENV !== "production",
+	devtools: { enabled: process.env.NODE_ENV !== "production" },
 	ssr: true,
 	srcDir: "src/",
 	rootDir: "./",
