@@ -18,4 +18,7 @@ export default defineNuxtConfig({
 			version: "1.0.0.0",
 		},
 	},
+	$production: {},
+	$development: {},
+	$test: {},
 });
