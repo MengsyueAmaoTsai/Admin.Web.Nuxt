@@ -11,4 +11,10 @@ export default defineNuxtConfig({
 		plugins: "plugins",
 		modules: "modules",
 	},
+	appConfig: {
+		nuxt: {
+			appId: "RichillCapital.Admin.Web",
+			version: "1.0.0.0",
+		},
+	},
 });
