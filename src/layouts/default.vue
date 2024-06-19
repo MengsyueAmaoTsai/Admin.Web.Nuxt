@@ -1,5 +1,5 @@
-<script setup lang="ts"></script>
-
 <template>
-  <div><AppNav /><slot /><AppFooter /></div>
+  <div class="default-layout"><TopBar /> <slot /></div>
 </template>
+
+<style scoped></style>
