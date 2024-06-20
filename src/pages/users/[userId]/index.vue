@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Meng Syue Tsai</h2>
+    <h2>{{ user.name }}</h2>
     <p>User</p>
   </div>
 
@@ -22,7 +22,16 @@
       </tr>
 
       <tr>
-        <th>Created date time</th>
+        <th>Name</th>
+        <td>{{ user.name }}</td>
+      </tr>
+
+      <tr>
+        <th>Email</th>
+        <td>{{ user.email }}</td>
+      </tr>
+      <tr>
+        <th>Created At</th>
         <td>{{ user.createdAt }}</td>
       </tr>
     </tbody>
