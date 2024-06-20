@@ -14,12 +14,6 @@
           </tr>
 
           <tr>
-            <th>E-Mail</th>
-            <td>
-              <input type="email" placeholder="example@domain.com" />
-            </td>
-          </tr>
-          <tr>
             <th>Name</th>
             <td>
               <input type="text" />
@@ -27,10 +21,24 @@
           </tr>
 
           <tr>
+            <th>E-Mail</th>
+            <td>
+              <input type="email" placeholder="example@domain.com" />
+            </td>
+          </tr>
+
+          <tr>
             <th>Password</th>
             <td>
-              <input type="password" value="{{ password }}" />
+              <input type="password" value="{{ password.value }}" />
               <div><input type="checkbox" checked />Auto-generate password</div>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Lockout Enabled</th>
+            <td>
+              <input type="checkbox" :checked="lockoutEnabled" />
             </td>
           </tr>
         </tbody>
@@ -45,7 +53,8 @@
 
 <script setup lang="ts">
 const passwordGenerator = usePasswordGenerator();
-const password = passwordGenerator.value.generate();
+const password = ref(passwordGenerator.value.generate());
+const lockoutEnabled = ref(true);
 </script>
 
 <style></style>

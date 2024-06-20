@@ -30,6 +30,21 @@
         <th>Email</th>
         <td>{{ user.email }}</td>
       </tr>
+
+      <tr>
+        <th>Email Confirmed</th>
+        <td>{{ user.emailConfirmed }}</td>
+      </tr>
+
+      <tr>
+        <th>Lockout Enabled</th>
+        <td>{{ user.lockoutEnabled }}</td>
+      </tr>
+
+      <tr>
+        <th>Access Failed Count</th>
+        <td>{{ user.accessFailedCount }}</td>
+      </tr>
       <tr>
         <th>Created At</th>
         <td>{{ user.createdAt }}</td>
