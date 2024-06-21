@@ -16,21 +16,25 @@
           <tr>
             <th>Name</th>
             <td>
-              <input type="text" />
+              <input type="text" v-model="name" />
             </td>
           </tr>
 
           <tr>
             <th>E-Mail</th>
             <td>
-              <input type="email" placeholder="example@domain.com" />
+              <input
+                type="email"
+                placeholder="example@domain.com"
+                v-model="email"
+              />
             </td>
           </tr>
 
           <tr>
             <th>Password</th>
             <td>
-              <input type="password" value="{{ password.value }}" />
+              <input type="password" v-model="password" />
               <div><input type="checkbox" checked />Auto-generate password</div>
             </td>
           </tr>
@@ -47,14 +51,47 @@
 
     <div class="properties"></div>
 
-    <button>Create</button>
+    <fluent-button @click="createUser" appearance="accent"
+      >Create</fluent-button
+    >
   </div>
 </template>
 
 <script setup lang="ts">
+const resourceServerOptions = useRuntimeConfig().public.resourceServer;
 const passwordGenerator = usePasswordGenerator();
-const password = ref(passwordGenerator.value.generate());
 const lockoutEnabled = ref(true);
+
+const name = ref("");
+const email = ref("");
+const password = ref(passwordGenerator.value.generate());
+
+const createUser = async (): Promise<void> => {
+  const createUserRequest = {
+    name: name.value,
+    email: email.value,
+    password: password.value,
+  };
+
+  try {
+    const response = await fetch(
+      `${resourceServerOptions.baseAddress}/api/v1/users`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(createUserRequest),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to create user");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
 </script>
 
 <style></style>
