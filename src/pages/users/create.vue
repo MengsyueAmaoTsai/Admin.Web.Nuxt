@@ -2,7 +2,7 @@
   <div>
     <h2>Create new user</h2>
     <p>Create a new internal user in your system.</p>
-    <button>X</button>
+    <NuxtLink to="/users">X</NuxtLink>
   </div>
 
   <div>

@@ -4,7 +4,8 @@
 
     <!-- Operations -->
     <div>
-      <button>New User</button>
+      <!-- <button @click="navigateToCreate">New User</button> -->
+      <NuxtLink to="/users/create">New User</NuxtLink>
       <button>Download Users</button>
 
       <!-- Bulk Operations -->
@@ -49,12 +50,21 @@
 </template>
 
 <script lang="ts" setup>
-const appOptions = useRuntimeConfig().public;
+// Get options
+const resourceServerOptions = useRuntimeConfig().public.resourceServer;
 
+// Get router
+const router = useRouter();
+
+// Fetch users
 const {
   data: users,
   error,
   execute,
   refresh,
-} = await useFetch(`${appOptions.resourceServer.baseAddress}/api/v1/users`);
+} = await useFetch(`${resourceServerOptions.baseAddress}/api/v1/users`);
+
+function navigateToCreate() {
+  console.log("Navigate to create user");
+}
 </script>
