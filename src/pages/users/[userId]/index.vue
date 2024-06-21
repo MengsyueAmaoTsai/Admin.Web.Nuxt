@@ -51,6 +51,23 @@
       </tr>
     </tbody>
   </table>
+
+  <h3>Accounts</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="account in user.accounts">
+        <td>{{ account.id }}</td>
+        <td>{{ account.name }}</td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script setup lang="ts">
