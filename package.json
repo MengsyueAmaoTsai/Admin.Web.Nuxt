@@ -12,6 +12,9 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@fluentui/web-components": "^2.6.1",
+    "@microsoft/fast-element": "^1.13.0",
+    "lodash-es": "^4.17.21",
     "nuxt": "^3.12.1",
     "vue": "^3.4.27",
     "vue-router": "^4.3.3"

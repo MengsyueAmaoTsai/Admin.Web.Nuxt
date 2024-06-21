@@ -28,4 +28,10 @@ export default defineNuxtConfig({
 			},
 		},
 	},
+	plugins: [
+		{
+			src: "~/plugins/fluent-ui.ts",
+			mode: "client",
+		},
+	],
 });
