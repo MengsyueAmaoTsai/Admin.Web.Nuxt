@@ -18,7 +18,14 @@ export default defineNuxtConfig({
 			version: "1.0.0.0",
 		},
 	},
-	$production: {},
-	$development: {},
-	$test: {},
+	runtimeConfig: {
+		public: {
+			resourceServer: {
+				baseAddress:
+					process.env.NODE_ENV === "production"
+						? "https://api.richillcapital.com"
+						: "http://localhost:11000",
+			},
+		},
+	},
 });

@@ -57,10 +57,14 @@
 const route = useRoute();
 const userId = ref(route.params.userId);
 
+const resourceServerOptions = useRuntimeConfig().public.resourceServer;
+
 const {
   data: user,
   error,
   execute,
   refresh,
-} = await useFetch(`http://localhost:11000/api/v1/users/${userId.value}`);
+} = await useFetch(
+  `${resourceServerOptions.baseAddress}/api/v1/users/${userId.value}`
+);
 </script>

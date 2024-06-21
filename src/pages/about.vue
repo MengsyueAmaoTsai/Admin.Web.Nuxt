@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const appConfig = useAppConfig();
 const app = useNuxtApp();
-
 const assemblyName = appConfig.nuxt.appId;
 const assemblyVersion = appConfig.nuxt.version;
 const nuxtVersion = app.versions.nuxt;

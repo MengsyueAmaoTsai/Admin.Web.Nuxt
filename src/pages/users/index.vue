@@ -49,10 +49,12 @@
 </template>
 
 <script lang="ts" setup>
+const appOptions = useRuntimeConfig().public;
+
 const {
   data: users,
   error,
   execute,
   refresh,
-} = await useFetch("http://localhost:11000/api/v1/users");
+} = await useFetch(`${appOptions.resourceServer.baseAddress}/api/v1/users`);
 </script>
