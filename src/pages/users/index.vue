@@ -1,19 +1,27 @@
 <template>
   <div>
+    <fluent-breadcrumb>
+      <fluent-breadcrumb-item href="/">Home</fluent-breadcrumb-item>
+      <fluent-breadcrumb-item>Users</fluent-breadcrumb-item>
+    </fluent-breadcrumb>
+
     <h2>Users</h2>
 
     <!-- Operations -->
     <div>
       <!-- <button @click="navigateToCreate">New User</button> -->
-      <NuxtLink to="/users/create">New User</NuxtLink>
-      <button>Download Users</button>
+      <NuxtLink to="/users/create"
+        ><fluent-button appearance="accent">New User</fluent-button></NuxtLink
+      >
+
+      <fluent-button appearance="accent">Download Users</fluent-button>
 
       <!-- Bulk Operations -->
       <select>
         <option>Bulk Create</option>
         <option>Bulk Delete</option>
       </select>
-      <button>Refresh</button>
+      <fluent-button appearance="accent">Refresh</fluent-button>
 
       <!-- Manage View -->
       <select>
@@ -21,12 +29,12 @@
         <option>Bulk Delete</option>
       </select>
 
-      <button>Delete</button>
+      <fluent-button appearance="accent">Delete</fluent-button>
     </div>
 
     <div>
       <input type="text" class="search" placeholder="Search..." />
-      <button>Add filter</button>
+      <fluent-button appearance="accent">Add filter</fluent-button>
     </div>
 
     <table>

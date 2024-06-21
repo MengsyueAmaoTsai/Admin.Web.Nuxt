@@ -1,4 +1,10 @@
 <template>
+  <fluent-breadcrumb>
+    <fluent-breadcrumb-item href="/">Home</fluent-breadcrumb-item>
+    <fluent-breadcrumb-item href="/users">Users</fluent-breadcrumb-item>
+    <fluent-breadcrumb-item>{{ user.name }}</fluent-breadcrumb-item>
+  </fluent-breadcrumb>
+
   <div>
     <h2>{{ user.name }}</h2>
     <p>User</p>
