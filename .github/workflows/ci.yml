@@ -1,26 +1,42 @@
-name: Nuxt Continuous Integration
+name: RichillCapital.Admin CI
 
 on:
   push:
     branches: 
       - master
+      - dev
+  pull_request:
+    branches:
+      - master
+      - dev
 
 env:
-  Node_Version: 22.x
-  Image_Name: admin-web
-  Tag: latest
+  NODE_VERSION: 22.x
+  IMAGE: admin-web
+  APPLICATION_NAME: RichillCapital.Admin.Web
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
+    - name: Use Nerdbank.GitVersioning
+      uses: dotnet/nbgv@master
+      id: nbgv    
+  
+    - name: Determine the Build Version
+      id: version
+      run: echo "::set-output name=version::$(git describe --tags --abbrev=0 || date +'%Y%m%d')-${{ steps.nbgv.outputs.GitCommitIdShort }}"
+  
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ env.Node_Version }}
+        node-version: ${{ env.NODE_VERSION }}
 
     - name: Install dependencies
       run: npm i -g pnpm && pnpm i
@@ -36,10 +52,10 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t ${{ env.Image_Name }}:${{ env.Tag }} . 
+        docker build -t ${{ env.IMAGE }}:latest . 
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: RichillCapital.Admin.Web
+        name: ${{ env.APPLICATION_NAME }}-${{ steps.version.outputs.version }}
         path: ./.output
