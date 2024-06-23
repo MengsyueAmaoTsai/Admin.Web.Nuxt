@@ -21,6 +21,8 @@
     <div class="menu-content">
       <NuxtLink to="/users">Users</NuxtLink>
       <NuxtLink to="/accounts">Accounts</NuxtLink>
+      <NuxtLink to="/signals">Signals</NuxtLink>
+      <NuxtLink to="/signal-sources">Signal Sources</NuxtLink>
     </div>
   </div>
 </template>
