@@ -14,6 +14,7 @@ env:
   NODE_VERSION: 22.x
   IMAGE: admin-web
   APPLICATION_NAME: RichillCapital.Admin.Web
+  OUTPUT_DIRECTORY: ./.output
 
 jobs:
   build:
@@ -29,7 +30,7 @@ jobs:
       uses: dotnet/nbgv@master
       id: nbgv    
   
-    - name: Determine the Build Version
+    - name: Get Version
       id: version
       run: echo "::set-output name=version::$(git describe --tags --abbrev=0 || date +'%Y%m%d')-${{ steps.nbgv.outputs.GitCommitIdShort }}"
   
@@ -58,4 +59,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{ env.APPLICATION_NAME }}-${{ steps.version.outputs.version }}
-        path: ./.output
+        path: ${{ env.OUTPUT_DIRECTORY }}
