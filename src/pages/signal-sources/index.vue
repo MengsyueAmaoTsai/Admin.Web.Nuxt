@@ -14,7 +14,7 @@
       <tbody>
         <tr v-for="signalSource in signalSources.items" :key="signalSource.id">
           <td>
-            <NuxtLink :to="`/signalSources/${signalSource.id}`">{{
+            <NuxtLink :to="`/signal-sources/${signalSource.id}`">{{
               signalSource.id
             }}</NuxtLink>
           </td>
