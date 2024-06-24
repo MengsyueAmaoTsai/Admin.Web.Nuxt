@@ -8,6 +8,7 @@
           <th>Id</th>
           <th>User Id</th>
           <th>Name</th>
+          <th>Created At</th>
         </tr>
       </thead>
 
@@ -20,6 +21,7 @@
           </td>
           <td>{{ account.userId }}</td>
           <td>{{ account.name }}</td>
+          <td>{{ account.createdAt }}</td>
         </tr>
       </tbody>
     </table>
