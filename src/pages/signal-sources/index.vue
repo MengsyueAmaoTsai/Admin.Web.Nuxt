@@ -1,4 +1,8 @@
 <template>
+  <fluent-breadcrumb>
+    <fluent-breadcrumb-item href="/">Home</fluent-breadcrumb-item>
+    <fluent-breadcrumb-item>Signal Sources</fluent-breadcrumb-item>
+  </fluent-breadcrumb>
   <div>
     <h2>Signal Sources</h2>
 
