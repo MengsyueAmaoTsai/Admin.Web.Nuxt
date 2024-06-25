@@ -4,29 +4,53 @@
     <fluent-breadcrumb-item>Signal Sources</fluent-breadcrumb-item>
   </fluent-breadcrumb>
   <div>
-    <h2>Signal Sources</h2>
+    <div class="header">
+      <h2>Signal Sources</h2>
+      <fluent-button appearance="outline">X</fluent-button>
+    </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
+    <div class="toolbar">
+      <fluent-button appearance="accent">Create</fluent-button>
+      <fluent-button appearance="accent">Refresh</fluent-button>
+      <fluent-button appearance="accent">Export to CSV</fluent-button>
+    </div>
 
-      <tbody>
-        <tr v-for="signalSource in signalSources.items" :key="signalSource.id">
-          <td>
-            <NuxtLink :to="`/signal-sources/${signalSource.id}`">{{
-              signalSource.id
-            }}</NuxtLink>
-          </td>
-          <td>{{ signalSource.name }}</td>
-          <td>{{ signalSource.description }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-view">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <fluent-checkbox></fluent-checkbox>
+            </th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr
+            v-for="signalSource in signalSources.items"
+            :key="signalSource.id"
+          >
+            <td>
+              <fluent-checkbox></fluent-checkbox>
+            </td>
+            <td>
+              <NuxtLink :to="`/signal-sources/${signalSource.id}`">{{
+                signalSource.id
+              }}</NuxtLink>
+            </td>
+            <td>{{ signalSource.name }}</td>
+            <td>{{ signalSource.description }}</td>
+            <td>
+              <fluent-button appearance="outline">...</fluent-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -42,3 +66,11 @@ const {
   `${resourceServerOptions.baseAddress}/api/v1/signal-sources`
 );
 </script>
+
+<style scoped lang="css">
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+</style>
