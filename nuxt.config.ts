@@ -11,6 +11,7 @@ export default defineNuxtConfig({
 		middleware: "middlewares",
 		plugins: "plugins",
 		modules: "modules",
+		assets: "assets",
 	},
 	appConfig: {
 		nuxt: {
@@ -28,6 +29,7 @@ export default defineNuxtConfig({
 			},
 		},
 	},
+	css: ["~/assets/styles/main.css"],
 	plugins: [
 		{
 			src: "~/plugins/fluent-ui.ts",
