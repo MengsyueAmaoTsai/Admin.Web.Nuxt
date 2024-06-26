@@ -1,5 +1,7 @@
 <template>
-  <div class="top-bar-container"></div>
+  <div class="top-bar-container">
+    <AppTopBarSearch />
+  </div>
 </template>
 
 <style scoped></style>
