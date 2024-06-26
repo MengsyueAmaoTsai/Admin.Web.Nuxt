@@ -28,6 +28,7 @@
             <th>Quantity</th>
             <th>Price</th>
             <th>Latency</th>
+            <th>IP Address</th>
           </tr>
         </thead>
 
@@ -42,6 +43,7 @@
             <td>{{ signal.quantity }}</td>
             <td>{{ signal.price }}</td>
             <td>{{ formatLatency(signal.latency) }}</td>
+            <td>{{ signal.ipAddress }}</td>
           </tr>
         </tbody>
       </table>
