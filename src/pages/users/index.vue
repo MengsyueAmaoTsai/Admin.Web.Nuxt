@@ -47,7 +47,9 @@
             <tr v-for="user in users.items" :key="user.id">
               <td><input type="checkbox" /></td>
               <td>{{ user.id }}</td>
-              <td>{{ user.name }}</td>
+              <td>
+                <NuxtLink :to="`/users/${user.id}`">{{ user.name }}</NuxtLink>
+              </td>
               <td>{{ user.email }}</td>
               <td>{{ user.createdAt }}</td>
             </tr>

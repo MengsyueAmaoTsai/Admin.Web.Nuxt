@@ -3,14 +3,14 @@
     <h3>Services</h3>
 
     <div class="features-container">
-      <a href="/create">Create a resource</a>
-      <a href="/create">More services</a>
+      <NuxtLink to="/create">Create a resource</NuxtLink>
+      <NuxtLink to="/all-services">More services</NuxtLink>
     </div>
 
     <h3>Navigate</h3>
 
     <div class="explore-container">
-      <a href="/dashboard">Dashboard</a>
+      <NuxtLink to="/dashboard">Dashboard</NuxtLink>
     </div>
   </div>
 </template>
