@@ -15,15 +15,14 @@
       <input type="text" placeholder="Search" />
     </div>
 
-    <div>0 items.</div>
+    <div>{{ signals.items.length }} items.</div>
 
     <div>
       <table>
         <thead>
           <tr>
-            <th>Id</th>
-            <th>Source Id</th>
             <th>Time</th>
+            <th>Source Id</th>
             <th>Exchange</th>
             <th>Symbol</th>
             <th>Quantity</th>
@@ -36,14 +35,13 @@
 
         <tbody v-else>
           <tr v-for="signal in signals.items" :key="signal.id">
-            <td>{{ signal.id }}</td>
+            <td>{{ formatTime(signal.time) }}</td>
             <td>{{ signal.sourceId }}</td>
-            <td>{{ signal.time }}</td>
             <td>{{ signal.exchange }}</td>
             <td>{{ signal.symbol }}</td>
             <td>{{ signal.quantity }}</td>
             <td>{{ signal.price }}</td>
-            <td>{{ signal.latency }}</td>
+            <td>{{ formatLatency(signal.latency) }}</td>
           </tr>
         </tbody>
       </table>
@@ -73,6 +71,14 @@ const {
   execute,
   refresh,
 } = await useFetch(`${resourceServerOptions.baseAddress}/api/v1/signals`);
+
+function formatTime(time: string): string {
+  return new Date(time).toISOString();
+}
+
+function formatLatency(latency: number): string {
+  return `${(latency / 1000).toFixed(3)}/s`;
+}
 </script>
 
 <style></style>
