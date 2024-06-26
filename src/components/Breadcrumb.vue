@@ -4,7 +4,7 @@
       <fluent-breadcrumb-item
         v-for="breadcrumb in breadcrumbs"
         :href="breadcrumb.path"
-        >{{ breadcrumb.name }}</fluent-breadcrumb-item
+        >{{ breadcrumb.text }}</fluent-breadcrumb-item
       >
     </fluent-breadcrumb>
   </div>
