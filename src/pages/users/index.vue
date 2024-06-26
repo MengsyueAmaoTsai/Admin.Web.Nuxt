@@ -1,10 +1,7 @@
 <template>
   <div>
     <div class="breadcrumb-container">
-      <fluent-breadcrumb>
-        <fluent-breadcrumb-item href="/">Home</fluent-breadcrumb-item>
-        <fluent-breadcrumb-item href="#">Users</fluent-breadcrumb-item>
-      </fluent-breadcrumb>
+      <Breadcrumb :breadcrumbs="breadcrumbs" />
     </div>
 
     <div class="title-container">
@@ -75,6 +72,16 @@
 
 <script lang="ts" setup>
 const pageTitle = "Users";
+const breadcrumbs = [
+  {
+    name: "Home",
+    path: "/",
+  },
+  {
+    name: "Users",
+    path: "#",
+  },
+];
 const resourceServerOptions = useRuntimeConfig().public.resourceServer;
 
 const {
