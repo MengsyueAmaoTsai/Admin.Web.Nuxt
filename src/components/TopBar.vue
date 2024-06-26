@@ -1,5 +1,7 @@
 <template>
-  <div class="top-bar">TopBar</div>
+  <div class="top-bar">
+    <Brand />
+  </div>
 </template>
 
 <style scoped>
