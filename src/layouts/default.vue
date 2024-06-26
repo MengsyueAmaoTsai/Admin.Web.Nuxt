@@ -1,6 +1,6 @@
 <template>
   <div class="default-layout">
-    <TopBar />
+    <AppTopBar />
 
     <main>
       <slot />
