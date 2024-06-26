@@ -1,12 +1,10 @@
 <template>
   <div class="default-layout">
-    <header></header>
+    <TopBar />
 
     <main>
       <slot />
     </main>
-
-    <footer></footer>
   </div>
 </template>
 
