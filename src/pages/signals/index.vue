@@ -28,6 +28,7 @@
             <th>Symbol</th>
             <th>Quantity</th>
             <th>Price</th>
+            <th>Latency</th>
           </tr>
         </thead>
 
@@ -42,6 +43,7 @@
             <td>{{ signal.symbol }}</td>
             <td>{{ signal.quantity }}</td>
             <td>{{ signal.price }}</td>
+            <td>{{ signal.latency }}</td>
           </tr>
         </tbody>
       </table>
