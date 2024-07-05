@@ -1,4 +1,4 @@
-name: RichillCapital.Admin CD
+name: RichillCapital.Admin.Web CD
 
 on:
   push:

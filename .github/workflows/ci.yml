@@ -1,4 +1,4 @@
-name: RichillCapital.Admin CI
+name: RichillCapital.Admin.Web CI
 
 on:
   push:
