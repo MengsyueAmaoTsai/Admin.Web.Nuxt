@@ -1,9 +1,9 @@
 <template>
   <div class="top-bar-container">
     <AppTopBarSearch />
+
+    <div class="avatar-menu__email">mengsyue.tsai@outlook.com</div>
   </div>
 </template>
-
-<style scoped></style>
 
 <script setup lang="ts"></script>
