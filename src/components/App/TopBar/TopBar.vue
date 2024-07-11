@@ -5,10 +5,7 @@
       <a></a>
 
       <!-- Brand Application Name -->
-      <h1 class="top-bar__brand">
-        <a class="top-bar__brand__anchor">RichillCapital Admin Web</a>
-      </h1>
-
+      <AppTopBarBrand />
       <AppTopBarSearchBox />
 
       <!-- Avatar Button -->
@@ -41,30 +38,5 @@
   font-size: 100%;
   font-weight: inherit;
   outline: 0 !important;
-}
-
-.top-bar__brand {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  min-width: 0;
-  font-size: 100%;
-  font-weight: inherit;
-
-  flex: 0 1 auto;
-  outline: 0;
-}
-.top-bar__brand__anchor {
-  display: inline-block;
-  font-size: 15px;
-  padding: 0 20px;
-  height: 40px;
-  line-height: 40px;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-  box-sizing: border-box;
 }
 </style>
