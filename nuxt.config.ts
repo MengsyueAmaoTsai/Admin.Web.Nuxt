@@ -21,11 +21,11 @@ export default defineNuxtConfig({
 	},
 	runtimeConfig: {
 		public: {
-			resourceServer: {
+			resourceService: {
 				baseAddress:
 					process.env.NODE_ENV === "production"
 						? "https://api.richillcapital.com"
-						: "http://localhost:11000",
+						: "https://localhost:10000",
 			},
 		},
 	},

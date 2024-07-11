@@ -1,12 +1,3 @@
-<script setup lang="ts">
-const appConfig = useAppConfig();
-const app = useNuxtApp();
-const assemblyName = appConfig.nuxt.appId;
-const assemblyVersion = appConfig.nuxt.version;
-const nuxtVersion = app.versions.nuxt;
-const vueVersion = app.versions.vue;
-</script>
-
 <template>
   <div>
     <table>
@@ -31,3 +22,14 @@ const vueVersion = app.versions.vue;
     </table>
   </div>
 </template>
+
+<script lang="ts" setup>
+const appConfig = useAppConfig();
+const app = useNuxtApp();
+const assemblyName = appConfig.nuxt.appId;
+const assemblyVersion = appConfig.nuxt.version;
+const nuxtVersion = app.versions.nuxt;
+const vueVersion = app.versions.vue;
+</script>
+
+<style lang="scss" scoped></style>
