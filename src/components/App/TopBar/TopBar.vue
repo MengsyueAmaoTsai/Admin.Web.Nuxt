@@ -9,21 +9,7 @@
         <a class="top-bar__brand__anchor">RichillCapital Admin Web</a>
       </h1>
 
-      <!-- Search Box -->
-      <div class="top-bar__search-box">
-        <div class="top-bar__search-box-wrapper">
-          <div class="top-bar__search-box__input-container">
-            <input
-              class="top-bar__search-box__input"
-              type="text"
-              placeholder="Search resources, services, and docs (G+/)"
-              autocomplete="off"
-              maxlength="100"
-              role="combobox"
-            />
-          </div>
-        </div>
-      </div>
+      <AppTopBarSearchBox />
 
       <!-- Avatar Button -->
       <div>mengsyue.tsai@outlook.com</div>
@@ -80,47 +66,5 @@
   text-overflow: ellipsis;
   width: 100%;
   box-sizing: border-box;
-}
-.top-bar__search-box {
-  display: flex;
-  flex: 0 10000 auto;
-  position: relative;
-  justify-content: center;
-
-  width: 800px;
-  min-width: 280px;
-  max-width: 800px;
-
-  margin-left: 7px;
-  margin-right: 15px;
-  outline: 0;
-}
-.top-bar__search-box-wrapper {
-  min-width: 364px;
-  max-width: 520px;
-  outline: 0;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  border-radius: 2px;
-  font-size: 100%;
-  font-weight: inherit;
-}
-.top-bar__search-box__input-container {
-  font-size: 100%;
-  font-weight: inherit;
-  flex: 1 1 auto;
-  height: 26px;
-  outline: 0;
-}
-
-.top-bar__search-box__input {
-  font-size: 13px;
-
-  border: 0;
-  height: 26px;
-  box-sizing: border-box;
-  padding: 2px 8px 4px;
-  width: 100%;
 }
 </style>
