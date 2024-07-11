@@ -25,7 +25,7 @@
     <!-- Left content -->
     <div>
       <div class="tool-bar">
-        <button>Edit properties</button>
+        <button @click="editProperties">Edit properties</button>
         <button>Delete</button>
         <button>Refresh</button>
         <button>Manage view</button>
@@ -67,6 +67,7 @@
 
 <script lang="ts" setup>
 const route = useRoute();
+const router = useRouter();
 const resourceServiceOptions = useRuntimeConfig().public.resourceService;
 
 const signalSourceId = route.params.signalSourceId;
@@ -79,6 +80,10 @@ const {
 } = await useFetch(
   `${resourceServiceOptions.baseAddress}/api/v1/signal-sources/${signalSourceId}`
 );
+
+function editProperties() {
+  router.push(`/signal-sources/${signalSource.value.id}/edit-properties`);
+}
 </script>
 
 <style lang="scss" scoped>
