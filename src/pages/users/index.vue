@@ -37,9 +37,34 @@
 
       <tbody>
         <tr v-for="user in users.items" :key="user.id">
-          <input type="checkbox" v-model="selectedUsers" :value="user.id" />
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
+          <td>
+            <div>
+              <input type="checkbox" v-model="selectedUsers" :value="user.id" />
+            </div>
+          </td>
+
+          <td>
+            <div>
+              <div><img /></div>
+              <a>
+                <div>
+                  {{ user.name }}
+                </div>
+              </a>
+            </div>
+          </td>
+
+          <td>
+            <div>
+              <div>
+                {{ user.email }}
+              </div>
+              <div>
+                <button type="button">Copy</button>
+              </div>
+            </div>
+          </td>
+
           <td>{{ user.createdAt }}</td>
         </tr>
       </tbody>

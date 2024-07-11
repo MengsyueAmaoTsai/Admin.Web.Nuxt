@@ -9,12 +9,44 @@
       <AppTopBarSearchBox />
 
       <!-- Avatar Button -->
-      <div>mengsyue.tsai@outlook.com</div>
+      <div>
+        <button @click="toggleAvatarMenu">mengsyue.tsai@outlook.com</button>
+
+        <div class="avatar-menu" v-if="isAvatarMenuVisible">
+          <div class="current-user-company">
+            <div>Microsoft</div>
+          </div>
+
+          <div class="current-user-spacer"></div>
+
+          <div class="current-user-info">
+            <a class="current-user-avatar"></a>
+
+            <div class="current-user-details">
+              <div>mengsyue.tsai@outlook.com</div>
+              <div>mengsyue.tsai@outlook.com</div>
+              <div>
+                <a href="https://localhost:9999/profile" target="_blank"
+                  >My profile</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <a href="">Sign out</a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const isAvatarMenuVisible = ref(false);
+
+function toggleAvatarMenu() {
+  isAvatarMenuVisible.value = !isAvatarMenuVisible.value;
+}
+</script>
 
 <style scoped lang="scss">
 .top-bar__outer {
@@ -38,5 +70,11 @@
   font-size: 100%;
   font-weight: inherit;
   outline: 0 !important;
+}
+
+.avatar-menu {
+  right: 0;
+  top: 100%;
+  position: absolute;
 }
 </style>
