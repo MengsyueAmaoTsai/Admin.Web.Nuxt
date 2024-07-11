@@ -9,7 +9,10 @@
 
 <style scoped lang="scss">
 .web-container {
+  font-size: 13px;
   font-weight: inherit;
+  line-height: normal;
+
   outline: 0;
   position: fixed;
   left: 0;
@@ -20,7 +23,5 @@
   z-index: 0;
   display: flex;
   flex-direction: column;
-  font-size: 13px;
-  line-height: normal;
 }
 </style>

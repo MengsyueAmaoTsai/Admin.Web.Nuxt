@@ -1,14 +1,15 @@
-$colorIconPrimary: #F3F2F1;
-$colorContainerBackgroundPrimary: #1B1A19;
-
 body {
     font-family: az_ea_font, "Segoe UI", az_font, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 100%;
     font-weight: 400;
+
     height: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    color: $colorIconPrimary;
-    background-color: $colorContainerBackgroundPrimary;
+}
+
+
+svg {
+    overflow: hidden;
 }
