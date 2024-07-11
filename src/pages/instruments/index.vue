@@ -7,10 +7,7 @@
     </div>
 
     <MessageBar />
-
-    <div>
-      <input type="text" placeholder="Search" />
-    </div>
+    <SearchBox />
 
     <div>
       {{ instruments.totalCount }}

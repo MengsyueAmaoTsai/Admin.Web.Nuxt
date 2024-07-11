@@ -8,10 +8,8 @@
     </div>
 
     <MessageBar />
+    <SearchBox />
 
-    <div>
-      <input type="text" placeholder="Search" />
-    </div>
     <div>
       {{ signalSources.totalCount }}
       {{ signalSources.totalCount === 1 ? "signal source" : "signal sources" }}

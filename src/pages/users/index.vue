@@ -8,10 +8,7 @@
     </div>
 
     <MessageBar />
-
-    <div>
-      <input type="text" placeholder="Search" />
-    </div>
+    <SearchBox />
 
     <div>
       {{ users.totalCount }}
