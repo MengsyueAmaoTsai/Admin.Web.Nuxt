@@ -5,7 +5,7 @@
       <div>New user</div>
       <div>Download users</div>
       <div>Bulk operations</div>
-      <div>Refresh</div>
+      <button @click="refreshUsers">Refresh</button>
       <div>Manage view</div>
       <div>Delete</div>
       <div>Per-user MFA</div>
@@ -24,7 +24,11 @@
     <table>
       <thead>
         <tr>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            @change="toggleAllUsers"
+            :checked="isAllSelected"
+          />
           <th>Name</th>
           <th>Email</th>
           <th>Created at</th>
@@ -33,7 +37,7 @@
 
       <tbody>
         <tr v-for="user in users.items" :key="user.id">
-          <input type="checkbox" />
+          <input type="checkbox" v-model="selectedUsers" :value="user.id" />
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.createdAt }}</td>
@@ -52,6 +56,27 @@ const {
   execute,
   refresh,
 } = await useFetch(`${resourceServerOptions.baseAddress}/api/v1/users`);
+
+const selectedUsers = ref<string[]>([]);
+
+const isAllSelected = computed(() => {
+  return (
+    users.value?.items.length &&
+    selectedUsers.value.length === users.value.items.length
+  );
+});
+
+function toggleAllUsers(event: Event): void {
+  const target = event.target as HTMLInputElement;
+  selectedUsers.value = target.checked
+    ? users.value?.items.map((user) => user.id) || []
+    : [];
+}
+
+async function refreshUsers(): void {
+  await refresh();
+  selectedUsers.value = [];
+}
 </script>
 
 <style scoped lang="scss">
