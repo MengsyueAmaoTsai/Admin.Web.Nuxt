@@ -27,6 +27,7 @@
           <th>Id</th>
           <th>Name</th>
           <th>Description</th>
+          <th>Created at</th>
         </tr>
       </thead>
 
@@ -35,9 +36,26 @@
           <td>
             <input type="checkbox" />
           </td>
-          <td>{{ signalSource.id }}</td>
-          <td>{{ signalSource.name }}</td>
+
+          <td>
+            <NuxtLink :to="`/signal-sources/${signalSource.id}`">
+              <div>
+                {{ signalSource.id }}
+              </div>
+            </NuxtLink>
+          </td>
+
+          <td>
+            <NuxtLink :to="`/signal-sources/${signalSource.id}`">
+              <div>
+                {{ signalSource.name }}
+              </div>
+            </NuxtLink>
+          </td>
+
           <td>{{ signalSource.description }}</td>
+
+          <td>{{ signalSource.createdAt }}</td>
         </tr>
       </tbody>
     </table>
@@ -63,6 +81,4 @@ function newSignalSource() {
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
