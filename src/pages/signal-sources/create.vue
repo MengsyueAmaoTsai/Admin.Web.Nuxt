@@ -32,27 +32,30 @@ type CreateSignalSourceRequest = {
   description: string;
 };
 
+const resourceServiceOptions = useRuntimeConfig().public.resourceService;
+const router = useRouter();
+
 const request = ref({
   id: "",
   name: "",
   description: "",
 });
 
-const resourceServiceOptions = useRuntimeConfig().public.resourceService;
-
 async function createSignalSource() {
-  const response = await $fetch(
-    `${resourceServiceOptions.baseAddress}/api/v1/signal-sources`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: request.value,
-    }
-  );
+  try {
+    const response = await $fetch(
+      `${resourceServiceOptions.baseAddress}/api/v1/signal-sources`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: request.value,
+      }
+    );
 
-  return response;
+    router.push("/signal-sources");
+  } catch (error) {}
 }
 </script>
 

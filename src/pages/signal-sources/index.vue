@@ -1,7 +1,68 @@
 <template>
-  <div>Signal sources</div>
+  <div>
+    <div>
+      <button @click="newSignalSource">New signal source</button>
+      <button>Refresh</button>
+      <button>Manage View</button>
+      <button>Delete</button>
+    </div>
+
+    <MessageBar />
+
+    <div>
+      <input type="text" placeholder="Search" />
+    </div>
+    <div>
+      {{ signalSources.totalCount }}
+      {{ signalSources.totalCount === 1 ? "signal source" : "signal sources" }}
+      found
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <input type="checkbox" />
+          </th>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr v-for="signalSource in signalSources.items" :key="signalSource.id">
+          <td>
+            <input type="checkbox" />
+          </td>
+          <td>{{ signalSource.id }}</td>
+          <td>{{ signalSource.name }}</td>
+          <td>{{ signalSource.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const resourceServiceOptions = useRuntimeConfig().public.resourceService;
 
-<style lang="scss" scoped></style>
+const {
+  data: signalSources,
+  error,
+  execute,
+  refresh,
+} = await useFetch(
+  `${resourceServiceOptions.baseAddress}/api/v1/signal-sources`
+);
+
+const router = useRouter();
+
+function newSignalSource() {
+  router.push("/signal-sources/create");
+}
+</script>
+
+<style lang="scss" scoped>
+
+</style>
