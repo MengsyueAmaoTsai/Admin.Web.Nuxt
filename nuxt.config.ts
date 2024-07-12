@@ -27,6 +27,12 @@ export default defineNuxtConfig({
 						? "https://api.richillcapital.com"
 						: "http://localhost:11000",
 			},
+			identity: {
+				authority: "https://localhost:9999",
+				clientId: "RichillCapital.Admin.Web.Nuxt",
+				clientSecret: "secret",
+				responseType: "code",
+			},
 		},
 	},
 	css: ["~/assets/styles/main.scss"],
@@ -36,4 +42,5 @@ export default defineNuxtConfig({
 			mode: "client",
 		},
 	],
+	modules: ["@pinia/nuxt"],
 });

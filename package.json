@@ -15,8 +15,11 @@
   "dependencies": {
     "@fluentui/web-components": "^2.6.1",
     "@microsoft/fast-element": "^1.13.0",
+    "@pinia/nuxt": "^0.5.1",
     "lodash-es": "^4.17.21",
     "nuxt": "^3.12.1",
+    "oidc-client-ts": "^3.0.1",
+    "pinia": "^2.1.7",
     "vue": "^3.4.27",
     "vue-router": "^4.3.3"
   },
