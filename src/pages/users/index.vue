@@ -51,6 +51,12 @@
 </template>
 
 <script lang="ts" setup>
+definePageMeta({
+  title: "Users",
+  description: "List of users",
+  layout: "resources-list",
+});
+
 const resourceServiceOptions = useRuntimeConfig().public.resourceService;
 
 const {
