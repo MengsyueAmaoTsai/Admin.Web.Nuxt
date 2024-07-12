@@ -1,7 +1,6 @@
 <template>
   <div>
-    <Brand></Brand>
-    <AvatarButton></AvatarButton>
+    <TopBar />
   </div>
 </template>
 
@@ -10,4 +9,5 @@ const router = useRouter();
 const authenticationService = useAuthenticationService();
 const currentUser = useCurrentUser();
 </script>
+
 <style lang="scss" scoped></style>
