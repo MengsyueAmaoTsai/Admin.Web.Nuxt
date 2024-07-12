@@ -3,21 +3,21 @@ import { acceptHMRUpdate, defineStore } from "pinia";
 
 export const useAuthStore = defineStore("auth", () => {
 	const currentUser = ref<User | null>(null);
-
-	const accessToken = computed(() => currentUser.value?.access_token ?? "");
 	const isAuthenticated = computed(() => !!currentUser.value);
-
-	const captureUser = (user: User) => {
-		currentUser.value = user;
-	};
-
-	const revokeSession = () => {
-		currentUser.value = null;
-	};
-
+	const userId = computed(() => currentUser.value?.profile.sub ?? "");
 	const tenantId = computed(() => currentUser.value?.profile.tenant_id ?? "");
+	const accessToken = computed(() => currentUser.value?.access_token ?? "");
+
+	function captureUser(user: User) {
+		currentUser.value = user;
+	}
+
+	function revokeSession() {
+		currentUser.value = null;
+	}
 
 	return {
+		id: userId,
 		isAuthenticated,
 		accessToken,
 		tenantId,

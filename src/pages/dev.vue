@@ -1,20 +1,10 @@
 <template>
-  <div>Development page</div>
+  <div>ICurrentUser{{ currentUser }}</div>
 </template>
 
 <script lang="ts" setup>
 const router = useRouter();
 const authenticationService = useAuthenticationService();
-
-async function authenticate() {
-  try {
-    await authenticationService.signIn();
-    router.push("/");
-  } catch (error) {
-    console.error("Failed to sign in.", error);
-  }
-}
-
-// await authenticate();
+const currentUser = useCurrentUser();
 </script>
 <style lang="scss" scoped></style>
