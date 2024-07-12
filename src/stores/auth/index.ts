@@ -5,11 +5,13 @@ export const useAuthStore = defineStore("auth", () => {
 	const currentUser = ref<User | null>(null);
 	const isAuthenticated = computed(() => !!currentUser.value);
 	const userId = computed(() => currentUser.value?.profile.sub ?? "");
+	const email = computed(() => currentUser.value?.profile.email ?? "");
 	const tenantId = computed(() => currentUser.value?.profile.tenant_id ?? "");
 	const accessToken = computed(() => currentUser.value?.access_token ?? "");
 
 	function captureUser(user: User) {
 		currentUser.value = user;
+		console.log("Captured user", user);
 	}
 
 	function revokeSession() {
@@ -18,6 +20,7 @@ export const useAuthStore = defineStore("auth", () => {
 
 	return {
 		id: userId,
+		email,
 		isAuthenticated,
 		accessToken,
 		tenantId,

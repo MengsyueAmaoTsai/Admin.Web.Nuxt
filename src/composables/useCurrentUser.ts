@@ -1,10 +1,11 @@
 import { useAuthStore } from "~/stores/auth";
 
 export const useCurrentUser = () => {
-    const store = useAuthStore();
+	const store = useAuthStore();
 
-    return {
-        id: store.id,
-        isAuthenticated: store.isAuthenticated, 
-    }
+	return {
+		id: store.id,
+		email: store.email,
+		isAuthenticated: store.isAuthenticated,
+	};
 };

@@ -3,22 +3,33 @@
 </template>
 
 <script lang="ts" setup>
+import { useAuthStore } from "~/stores/auth";
+
 const authenticationService = useAuthenticationService();
 const localStorage = useLocalStorageManager();
 const router = useRouter();
+const authStore = useAuthStore();
 
 async function handleCallback() {
   try {
-    const _ = await authenticationService.handleSignInCallback();
+    await authenticationService?.handleSignInCallback().then((user) => {
+      if (user) {
+        authStore.captureUser(user);
+        const redirectUrl = localStorage.get("returnUrl");
 
-    const redirectUrl = localStorage.get("returnUrl");
-    console.log(`Redirecting to ${redirectUrl}...`);
-    router.push(redirectUrl);
-    localStorage.remove("returnUrl");
+        console.log(`Redirecting to ${redirectUrl}...`);
+
+        router.push(redirectUrl);
+
+        localStorage.remove("returnUrl");
+      }
+    });
   } catch (error) {}
 }
 
-await handleCallback();
+onMounted(async () => {
+  await handleCallback();
+});
 </script>
 
 <style></style>
