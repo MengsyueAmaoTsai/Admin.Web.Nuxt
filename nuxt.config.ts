@@ -21,7 +21,10 @@ export default defineNuxtConfig({
 	},
 	runtimeConfig: {
 		public: {
-			origin: process.env.NODE_ENV === 'production' ? 'https://admin.richillcapital.com' : 'http://localhost:9995',
+			origin:
+				process.env.NODE_ENV === "production"
+					? "https://admin.richillcapital.com"
+					: "http://localhost:9995",
 
 			resourceService: {
 				baseAddress:

@@ -1,5 +1,8 @@
 <template>
-  <div>ICurrentUser{{ currentUser }}</div>
+  <div>
+    <Brand></Brand>
+    <AvatarButton></AvatarButton>
+  </div>
 </template>
 
 <script lang="ts" setup>
