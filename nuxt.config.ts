@@ -33,7 +33,10 @@ export default defineNuxtConfig({
 						: "http://localhost:11000",
 			},
 			identity: {
-				authority: "https://localhost:9999",
+				authority:
+					process.env.NODE_ENV === "production"
+						? "https://identity.richillcapital.com"
+						: "https://localhost:9999",
 				clientId: "RichillCapital.Admin.Web.Nuxt",
 				clientSecret: "secret",
 				responseType: "code",
