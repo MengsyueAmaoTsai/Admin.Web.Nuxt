@@ -4,21 +4,21 @@
       <div>
         <label>Id</label>
       </div>
-      <input v-model="request.id" />
+      <input v-model="newSignalSource.id" />
     </div>
 
     <div>
       <div>
         <label>Name</label>
       </div>
-      <input v-model="request.name" />
+      <input v-model="newSignalSource.name" />
     </div>
 
     <div>
       <div>
         <label>Description</label>
       </div>
-      <input v-model="request.description" />
+      <input v-model="newSignalSource.description" />
     </div>
 
     <div @click="createSignalSource" role="button"><span>Create</span></div>
@@ -35,7 +35,7 @@ type CreateSignalSourceRequest = {
 const resourceServiceOptions = useRuntimeConfig().public.resourceService;
 const router = useRouter();
 
-const request = ref({
+const newSignalSource = ref({
   id: "",
   name: "",
   description: "",
@@ -50,7 +50,7 @@ async function createSignalSource() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: request.value,
+        body: newSignalSource.value,
       }
     );
 
