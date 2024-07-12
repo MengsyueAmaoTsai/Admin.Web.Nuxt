@@ -14,12 +14,11 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 	console.log("User => ", user);
 
 	if (!user && !identityRoutes.includes(to.path)) {
-		localStorage?.save("redirectUrl", to.path);
+		localStorage?.save("returnUrl", to.path);
 		authenticationService?.signIn();
 		console.log("User not found, redirecting to sign-in");
 	} else {
 		authStore.captureUser(user);
-		localStorage?.remove("redirectUrl");
 		console.log("User found, proceeding to route");
 	}
 

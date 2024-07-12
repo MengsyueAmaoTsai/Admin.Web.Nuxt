@@ -1,26 +1,29 @@
 import { User, UserManager, WebStorageStateStore } from "oidc-client-ts";
 
-class AuthenticationService {
+type IdentityOptions = {
+	authority: string;
+	clientId: string;
+	clientSecret: string;
+	responseType: string;
+}
+
+export class AuthenticationService {
 	private readonly userManager: UserManager;
 
-	public constructor() {
-		const origin = "http://localhost:9995";
-
+	public constructor(origin: string, options: IdentityOptions) {
 		if (window !== undefined) {
-			const options = {
-				authority: "https://localhost:9999",
-				client_id: "RichillCapital.Admin.Web.Nuxt",
-				client_secret: "secret",
-				response_type: "code",
+			this.userManager = new UserManager({
+				authority: options.authority,
+				client_id: options.clientId,
+				client_secret: options.clientSecret,
+				response_type: options.responseType,
+				scope: "openid profile email",
 				redirect_uri: `${origin}/sign-in-callback`,
 				silent_redirect_uri: `${origin}/silent-refresh`,
-				post_logout_redirect_uri: `${origin}`,
-				scope: "openid profile email",
+				post_logout_redirect_uri: `${origin}/sign-out-callback`,
 				userStore: new WebStorageStateStore(),
 				loadUserInfo: true,
-			};
-
-			this.userManager = new UserManager(options);
+			});
 		}
 	}
 
@@ -36,5 +39,3 @@ class AuthenticationService {
 		return this.userManager.getUser();
 	}
 }
-
-export const authenticationService = new AuthenticationService();

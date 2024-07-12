@@ -12,10 +12,8 @@ async function handleCallback() {
     const _ = await authenticationService.handleSignInCallback();
 
     const redirectUrl = localStorage.get("returnUrl");
-
     console.log(`Redirecting to ${redirectUrl}...`);
     router.push(redirectUrl);
-
     localStorage.remove("returnUrl");
   } catch (error) {}
 }
