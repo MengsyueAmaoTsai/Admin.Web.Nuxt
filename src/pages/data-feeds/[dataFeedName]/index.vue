@@ -1,22 +1,48 @@
 <template>
   <div>
-    <div v-if="!dataFeed">
-      <p>Loading...</p>
+    <div class="toolbar">
+      <button>Start</button>
+      <button>Stop</button>
+      <button>Restart</button>
+      <button @click="refreshDataFeed">Refresh</button>
     </div>
 
-    <div v-else>
-      <div>Name: {{ dataFeed.dataFeedName }}</div>
-
-      <div>Status: {{ dataFeed.status }}</div>
-
-      <div>
-        Connected Time:
-        {{ dataFeed.status === "Running" ? dataFeed.startedTime : "--" }}
+    <div class="essentials-items-container">
+      <div class="essentials-item">
+        <div class="essentials-item-label">
+          <label>Name</label>
+        </div>
+        <div class="essentials-item-value">{{ dataFeed.dataFeedName }}</div>
       </div>
 
-      <div>
-        Request Latency:
-        {{ dataFeed.requestLatency ?? 0 }}
+      <div class="essentials-item">
+        <div class="essentials-item-label">
+          <label>Status</label>
+        </div>
+        <div class="essentials-item-value">{{ dataFeed.status }}</div>
+      </div>
+
+      <div class="essentials-item">
+        <div class="essentials-item-label">
+          <label>Started at</label>
+        </div>
+        <div class="essentials-item-value">
+          {{ dataFeed.status === "Running" ? dataFeed.startedTime : "--" }} UTC
+        </div>
+      </div>
+
+      <div class="essentials-item">
+        <div class="essentials-item-label">
+          <label>Request Latency</label>
+        </div>
+        <div class="essentials-item-value">
+          {{
+            dataFeed.status === "Running" && dataFeed.requestLatency
+              ? dataFeed.requestLatency
+              : 0
+          }}
+          ms
+        </div>
       </div>
     </div>
   </div>
@@ -26,7 +52,7 @@
 const route = useRoute();
 const resourceServiceOptions = useRuntimeConfig().public.resourceService;
 const dataFeedName = route.params.dataFeedName;
-const isStarting = ref(false);
+const isProcessing = ref(false);
 
 const {
   data: dataFeed,
@@ -37,92 +63,17 @@ const {
   `${resourceServiceOptions.baseAddress}/api/v1/data-feeds/${dataFeedName}`
 );
 
-const currentDataFeed = ref({ ...dataFeed.value });
-
-console.log(currentDataFeed.value);
-
-const startDataFeed = async () => {
-  isStarting.value = true;
-
-  try {
-    const response = await fetch(
-      `${resourceServiceOptions.baseAddress}/api/v1/data-feeds/start`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ dataFeedName: dataFeedName }),
-      }
-    );
-    if (!response.ok) {
-      throw new Error("Failed to connect to data feed");
-    }
-    const result = await response.json();
-    console.log("Connection successful:", result);
-    // Optionally, you can refresh the dataFeed or handle success
-    await refresh();
-  } catch (error) {
-    console.error("Failed to connect data feed:", error);
-  } finally {
-    isStarting.value = false;
-  }
+const startDataFeed = () => {
+  console.log("Start data feed");
 };
-
-const stopDataFeed = async () => {
-  isStarting.value = true;
-
-  try {
-    const response = await fetch(
-      `${resourceServiceOptions.baseAddress}/api/v1/data-feeds/stop`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ dataFeedName: dataFeedName }),
-      }
-    );
-    if (!response.ok) {
-      throw new Error("Failed to disconnect from data feed");
-    }
-    const result = await response.json();
-    console.log("Disconnection successful:", result);
-    // Optionally, you can refresh the dataFeed or handle success
-    await refresh();
-  } catch (error) {
-    console.error("Failed to disconnect data feed:", error);
-  } finally {
-    isStarting.value = false;
-  }
+const stopDataFeed = () => {
+  console.log("Stop data feed");
 };
-
-const restartDataFeed = async () => {
-  isStarting.value = true;
-
-  try {
-    const response = await fetch(
-      `${resourceServiceOptions.baseAddress}/api/v1/data-feeds/restart`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ dataFeedName: dataFeedName }),
-      }
-    );
-    if (!response.ok) {
-      throw new Error("Failed to restart data feed");
-    }
-    const result = await response.json();
-    console.log("Restart successful:", result);
-    // Optionally, you can refresh the dataFeed or handle success
-    await refresh();
-  } catch (error) {
-    console.error("Failed to restart data feed:", error);
-  } finally {
-    isStarting.value = false;
-  }
+const restartDataFeed = () => {
+  console.log("Restart data feed");
+};
+const refreshDataFeed = async () => {
+  await refresh();
 };
 </script>
 
