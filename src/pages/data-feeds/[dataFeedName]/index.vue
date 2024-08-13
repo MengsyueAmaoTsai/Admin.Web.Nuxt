@@ -1,32 +1,23 @@
 <template>
   <div>
-    <button></button>
-    <h1>Data Feed Details</h1>
-
-    <div v-if="dataFeed">
-      <p><strong>Name:</strong> {{ dataFeed.dataFeedName }}</p>
-      <p>
-        <strong>Status:</strong>
-        {{ dataFeed.status }}
-
-        <button @click="connectDataFeed" :disabled="isConnecting">
-          {{ isConnecting ? "Connecting..." : "Connect" }}
-        </button>
-      </p>
-
-      <p>
-        <strong>Connected Time</strong>
-        <div>{{ dataFeed.connectedTime }}</div>
-      </p>
-      
-      <p>
-        <strong>Request Latency</strong>
-        <div>{{ dataFeed.requestLatency }}</div>
-      </p>
+    <div v-if="!dataFeed">
+      <p>Loading...</p>
     </div>
 
     <div v-else>
-      <p>Loading...</p>
+      <div>Name: {{ dataFeed.dataFeedName }}</div>
+
+      <div>Status: {{ dataFeed.status }}</div>
+
+      <div>
+        Connected Time:
+        {{ dataFeed.status === "Running" ? dataFeed.startedTime : "--" }}
+      </div>
+
+      <div>
+        Request Latency:
+        {{ dataFeed.requestLatency ?? 0 }}
+      </div>
     </div>
   </div>
 </template>
@@ -35,8 +26,7 @@
 const route = useRoute();
 const resourceServiceOptions = useRuntimeConfig().public.resourceService;
 const dataFeedName = route.params.dataFeedName;
-const isConnecting = ref(false);
-const connectionError = ref<string | null>(null);
+const isStarting = ref(false);
 
 const {
   data: dataFeed,
@@ -49,12 +39,14 @@ const {
 
 const currentDataFeed = ref({ ...dataFeed.value });
 
-const connectDataFeed = async () => {
-  isConnecting.value = true;
-  connectionError.value = null;
+console.log(currentDataFeed.value);
+
+const startDataFeed = async () => {
+  isStarting.value = true;
+
   try {
     const response = await fetch(
-      `${resourceServiceOptions.baseAddress}/api/v1/data-feeds/connect`,
+      `${resourceServiceOptions.baseAddress}/api/v1/data-feeds/start`,
       {
         method: "POST",
         headers: {
@@ -70,11 +62,66 @@ const connectDataFeed = async () => {
     console.log("Connection successful:", result);
     // Optionally, you can refresh the dataFeed or handle success
     await refresh();
-  } catch (err) {
-    connectionError.value = err.message;
-    console.error("Failed to connect data feed:", connectionError.value);
+  } catch (error) {
+    console.error("Failed to connect data feed:", error);
   } finally {
-    isConnecting.value = false;
+    isStarting.value = false;
+  }
+};
+
+const stopDataFeed = async () => {
+  isStarting.value = true;
+
+  try {
+    const response = await fetch(
+      `${resourceServiceOptions.baseAddress}/api/v1/data-feeds/stop`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ dataFeedName: dataFeedName }),
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to disconnect from data feed");
+    }
+    const result = await response.json();
+    console.log("Disconnection successful:", result);
+    // Optionally, you can refresh the dataFeed or handle success
+    await refresh();
+  } catch (error) {
+    console.error("Failed to disconnect data feed:", error);
+  } finally {
+    isStarting.value = false;
+  }
+};
+
+const restartDataFeed = async () => {
+  isStarting.value = true;
+
+  try {
+    const response = await fetch(
+      `${resourceServiceOptions.baseAddress}/api/v1/data-feeds/restart`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ dataFeedName: dataFeedName }),
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to restart data feed");
+    }
+    const result = await response.json();
+    console.log("Restart successful:", result);
+    // Optionally, you can refresh the dataFeed or handle success
+    await refresh();
+  } catch (error) {
+    console.error("Failed to restart data feed:", error);
+  } finally {
+    isStarting.value = false;
   }
 };
 </script>
