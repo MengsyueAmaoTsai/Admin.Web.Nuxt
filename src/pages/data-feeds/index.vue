@@ -2,9 +2,10 @@
   <div>
     <h1>Data Feeds</h1>
 
-    <button>Start all</button>
-    <button>Stop all</button>
-    <button>Restart all</button>
+    <div class="toolbar">
+      <button @click="refreshDataFeeds">Refresh</button>
+      <button @click="exportToCsv">Export to CSV</button>
+    </div>
 
     <table>
       <thead>
@@ -45,6 +46,14 @@ const {
 } = await useFetch(`${resourceServiceOptions.baseAddress}/api/v1/data-feeds`);
 
 console.log(dataFeeds);
+
+const refreshDataFeeds = async () => {
+  await refresh();
+};
+
+const exportToCsv = async () => {
+  console.log("Exporting to CSV");
+};
 </script>
 
 <style lang="scss" scoped></style>
