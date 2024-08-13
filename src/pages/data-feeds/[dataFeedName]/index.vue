@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="toolbar">
-      <button>Start</button>
-      <button>Stop</button>
-      <button>Restart</button>
+      <button @click="startDataFeed">Start</button>
+      <button @click="stopDataFeed">Stop</button>
+      <button @click="restartDataFeed">Restart</button>
       <button @click="refreshDataFeed">Refresh</button>
     </div>
 
@@ -52,7 +52,6 @@
 const route = useRoute();
 const resourceServiceOptions = useRuntimeConfig().public.resourceService;
 const dataFeedName = route.params.dataFeedName;
-const isProcessing = ref(false);
 
 const {
   data: dataFeed,
@@ -63,14 +62,50 @@ const {
   `${resourceServiceOptions.baseAddress}/api/v1/data-feeds/${dataFeedName}`
 );
 
-const startDataFeed = () => {
-  console.log("Start data feed");
+const startDataFeed = async () => {
+  const { data: responseData } = await useFetch(
+    `${resourceServiceOptions.baseAddress}/api/v1/data-feeds/start`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: { dataFeedName: dataFeedName },
+    }
+  );
+  console.log(responseData);
+  await refresh();
 };
-const stopDataFeed = () => {
+const stopDataFeed = async () => {
   console.log("Stop data feed");
+  const { data: responseData } = await useFetch(
+    `${resourceServiceOptions.baseAddress}/api/v1/data-feeds/stop`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: { dataFeedName: dataFeedName },
+    }
+  );
+  console.log(responseData);
+  await refresh();
 };
-const restartDataFeed = () => {
+const restartDataFeed = async () => {
   console.log("Restart data feed");
+
+  const { data: responseData } = await useFetch(
+    `${resourceServiceOptions.baseAddress}/api/v1/data-feeds/restart`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: { dataFeedName: dataFeedName },
+    }
+  );
+  console.log(responseData);
+  await refresh();
 };
 const refreshDataFeed = async () => {
   await refresh();
