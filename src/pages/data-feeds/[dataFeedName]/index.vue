@@ -7,11 +7,21 @@
       <p><strong>Name:</strong> {{ dataFeed.dataFeedName }}</p>
       <p>
         <strong>Status:</strong>
-        {{ dataFeed.isConnected ? "Connected" : "Disconnected" }}
+        {{ dataFeed.status }}
 
         <button @click="connectDataFeed" :disabled="isConnecting">
           {{ isConnecting ? "Connecting..." : "Connect" }}
         </button>
+      </p>
+
+      <p>
+        <strong>Connected Time</strong>
+        <div>{{ dataFeed.connectedTime }}</div>
+      </p>
+      
+      <p>
+        <strong>Request Latency</strong>
+        <div>{{ dataFeed.requestLatency }}</div>
       </p>
     </div>
 

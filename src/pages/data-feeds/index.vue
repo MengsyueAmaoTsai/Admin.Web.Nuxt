@@ -7,7 +7,7 @@
           {{ dataFeed.dataFeedName }}
         </NuxtLink>
         -
-        {{ dataFeed.isConnected ? "Connected" : "Disconnected" }}
+        {{ dataFeed.status }}
       </li>
     </ul>
   </div>
