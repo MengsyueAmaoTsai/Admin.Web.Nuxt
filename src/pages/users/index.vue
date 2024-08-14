@@ -23,7 +23,7 @@
         </div>
 
         <div>
-          <button type="submit">Create</button>
+          <button type="submit">Submit</button>
           <button type="button" @click="newUserFormVisible = false">
             Cancel
           </button>
@@ -45,8 +45,14 @@
       </thead>
       <tbody>
         <tr v-for="user in users" :key="user.id">
-          <td>{{ user.id }}</td>
-          <td>{{ user.name }}</td>
+          <td>
+            <NuxtLink :to="`users/${user.id}`">{{ user.id }}</NuxtLink>
+          </td>
+
+          <td>
+            <NuxtLink :to="`users/${user.id}`">{{ user.name }}</NuxtLink>
+          </td>
+
           <td>{{ user.email }}</td>
           <td>{{ user.createdTime }}</td>
         </tr>

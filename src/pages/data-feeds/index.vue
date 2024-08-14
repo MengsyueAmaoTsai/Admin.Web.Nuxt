@@ -2,33 +2,31 @@
   <div>
     <h1>Data Feeds</h1>
 
-    <div class="toolbar">
-      <button @click="refreshDataFeeds">Refresh</button>
-      <button @click="exportToCsv">Export to CSV</button>
+    <div>
+      <button @click="startDataFeed">Start</button>
+      <button @click="stopDataFeed">Stop</button>
+      <button @click="restartDataFeed">Restart</button>
+      <button @click="refreshData">Refresh</button>
     </div>
 
-    <table>
+    <div v-if="dataFeeds.length === 0">No data feed</div>
+
+    <table v-else>
       <thead>
         <tr>
-          <th>Data Feed Name</th>
+          <th>Name</th>
           <th>Status</th>
-          <th>Started Time</th>
+          <th>Started time</th>
         </tr>
       </thead>
-
       <tbody>
-        <tr v-for="dataFeed in dataFeeds" :key="dataFeed.dataFeedName">
+        <tr v-for="dataFeed in dataFeeds" :key="dataFeed.id">
           <td>{{ dataFeed.dataFeedName }}</td>
+
           <td>{{ dataFeed.status }}</td>
+
           <td>
             {{ dataFeed.status === "Running" ? dataFeed.startedTime : "--" }}
-          </td>
-          <td>
-            {{
-              dataFeed.status === "Running" && dataFeed.requestLatency
-                ? dataFeed.requestLatency
-                : 0
-            }}
           </td>
         </tr>
       </tbody>
@@ -38,6 +36,7 @@
 
 <script lang="ts" setup>
 const resourceServiceOptions = useRuntimeConfig().public.resourceService;
+
 const {
   data: dataFeeds,
   error,
@@ -45,14 +44,62 @@ const {
   refresh,
 } = await useFetch(`${resourceServiceOptions.baseAddress}/api/v1/data-feeds`);
 
-console.log(dataFeeds);
+const startDataFeed = async () => {
+  try {
+    await $fetch(
+      `${resourceServiceOptions.baseAddress}/api/v1/data-feeds/start`,
+      {
+        method: "POST",
+        body: {
+          dataFeedName: "Max",
+        },
+      }
+    );
 
-const refreshDataFeeds = async () => {
-  await refresh();
+    await refresh();
+  } catch (err) {
+    console.error("Error starting data feed:", err);
+  }
 };
 
-const exportToCsv = async () => {
-  console.log("Exporting to CSV");
+const stopDataFeed = async () => {
+  try {
+    await $fetch(
+      `${resourceServiceOptions.baseAddress}/api/v1/data-feeds/stop`,
+      {
+        method: "POST",
+        body: {
+          dataFeedName: "Max",
+        },
+      }
+    );
+
+    await refresh();
+  } catch (err) {
+    console.error("Error stopping data feed:", err);
+  }
+};
+
+const restartDataFeed = async () => {
+  try {
+    await $fetch(
+      `${resourceServiceOptions.baseAddress}/api/v1/data-feeds/restart`,
+      {
+        method: "POST",
+        body: {
+          dataFeedName: "Max",
+        },
+      }
+    );
+
+    await refresh();
+  } catch (err) {
+    console.error("Error restarting data feed:", err);
+  }
+};
+
+const refreshData = async () => {
+  await refresh();
 };
 </script>
 
