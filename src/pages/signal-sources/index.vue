@@ -52,8 +52,16 @@
 
       <tbody>
         <tr v-for="signalSource in signalSources" :key="signalSource.id">
-          <td>{{ signalSource.id }}</td>
-          <td>{{ signalSource.name }}</td>
+          <td>
+            <NuxtLink :to="`signal-sources/${signalSource.id}`">{{
+              signalSource.id
+            }}</NuxtLink>
+          </td>
+          <td>
+            <NuxtLink :to="`signal-sources/${signalSource.id}`">{{
+              signalSource.name
+            }}</NuxtLink>
+          </td>
           <td>{{ signalSource.description }}</td>
           <td>{{ signalSource.isPublished }}</td>
           <td>{{ signalSource.createdTime }}</td>
