@@ -13,6 +13,7 @@
           <th>Id</th>
           <th>Name</th>
           <th>Email</th>
+          <th>Created time</th>
         </tr>
       </thead>
       <tbody>
@@ -24,6 +25,7 @@
             <NuxtLink :to="`/users/${user.id}`">{{ user.name }}</NuxtLink>
           </td>
           <td>{{ user.email }}</td>
+          <td>{{ user.createdTime }}</td>
         </tr>
       </tbody>
     </table>
