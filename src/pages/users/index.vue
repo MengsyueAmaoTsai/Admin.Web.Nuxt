@@ -2,48 +2,28 @@
   <div>
     <div>
       <button @click="newUser">New user</button>
-      <button>Refresh</button>
+      <button @click="refreshData">Refresh</button>
       <button>Manage View</button>
       <button>Delete</button>
-    </div>
-
-    <MessageBar />
-    <SearchBox />
-
-    <div>
-      {{ users.totalCount }}
-      {{ users.totalCount === 1 ? "user" : "users" }}
-      found
     </div>
 
     <table>
       <thead>
         <tr>
-          <th>
-            <input type="checkbox" />
-          </th>
+          <th>Id</th>
           <th>Name</th>
           <th>Email</th>
         </tr>
       </thead>
-
       <tbody>
-        <tr v-for="user in users.items" :key="user.id">
+        <tr v-for="user in users" :key="user.id">
           <td>
-            <input type="checkbox" />
+            <NuxtLink :to="`/users/${user.id}`">{{ user.id }}</NuxtLink>
           </td>
-
           <td>
-            <div>
-              <NuxtLink :to="`users/${user.id}`">{{ user.name }}</NuxtLink>
-            </div>
+            <NuxtLink :to="`/users/${user.id}`">{{ user.name }}</NuxtLink>
           </td>
-
-          <td>
-            <div>
-              {{ user.email }}
-            </div>
-          </td>
+          <td>{{ user.email }}</td>
         </tr>
       </tbody>
     </table>
@@ -71,6 +51,9 @@ const router = useRouter();
 function newUser() {
   router.push("/users/create");
 }
+const refreshData = async () => {
+  await refresh();
+};
 </script>
 
 <style lang="scss" scoped></style>

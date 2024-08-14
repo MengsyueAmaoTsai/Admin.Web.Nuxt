@@ -1,65 +1,23 @@
 <template>
   <div>
-    <div>
-      <button>Refresh</button>
-      <button>Manage View</button>
-      <button>Delete</button>
+    <div class="toolbar">
+      <button @click="createAccount">Create account</button>
+      <button @click="exportToCsv">Export to CSV</button>
+      <button @click="refreshData">Refresh</button>
     </div>
-
-    <MessageBar />
-    <SearchBox />
-
-    <div>
-      {{ accounts.totalCount }}
-      {{ accounts.totalCount === 1 ? "account" : "accounts" }}
-      found
-    </div>
-
     <table>
       <thead>
         <tr>
-          <th>
-            <input type="checkbox" />
-          </th>
           <th>Id</th>
-          <th>User Id</th>
           <th>Name</th>
-          <th>Created at</th>
         </tr>
       </thead>
-
       <tbody>
-        <tr v-for="account in accounts.items" :key="account.id">
+        <tr v-for="account in accounts" :key="account.id">
           <td>
-            <input type="checkbox" />
+            {{ account.id }}
           </td>
-
-          <td>
-            <div>
-              <NuxtLink :to="`accounts/${account.id}`">{{
-                account.id
-              }}</NuxtLink>
-            </div>
-          </td>
-
-          <td>
-            <div>
-              <NuxtLink :to="`users/${account.userId}`">{{
-                account.userId
-              }}</NuxtLink>
-            </div>
-          </td>
-
-          <td>
-            <div>
-              {{ account.name }}
-            </div>
-          </td>
-          <td>
-            <div>
-              {{ account.createdAt }}
-            </div>
-          </td>
+          <td>{{ account.name }}</td>
         </tr>
       </tbody>
     </table>
@@ -75,6 +33,18 @@ const {
   execute,
   refresh,
 } = await useFetch(`${resourceServiceOptions.baseAddress}/api/v1/accounts`);
+
+const createAccount = async () => {
+  console.log("Create account");
+};
+
+const exportToCsv = async () => {
+  console.log("Export to CSV");
+};
+
+const refreshData = async () => {
+  await refresh();
+};
 </script>
 
 <style lang="scss" scoped></style>
