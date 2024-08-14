@@ -6,6 +6,8 @@
       <button @click="newSignalSourceFormVisible = true">
         New signal source
       </button>
+      <button @click="publishSignalSource">Publish</button>
+      <button @click="unpublishSignalSource">Unpublish</button>
       <button @click="refreshData">Refresh</button>
     </div>
     <!-- New user form -->
@@ -101,6 +103,36 @@ const createSignalSource = async () => {
     await refresh();
   } catch (err) {
     console.error("Error adding user:", err);
+  }
+};
+
+const publishSignalSource = async (signalSourceId: string) => {
+  try {
+    await $fetch(
+      `${resourceServiceOptions.baseAddress}/api/v1/signal-sources/${signalSourceId}/publish`,
+      {
+        method: "POST",
+      }
+    );
+
+    await refresh();
+  } catch (err) {
+    console.error("Error publishing signal source:", err);
+  }
+};
+
+const unpublishSignalSource = async (signalSourceId: string) => {
+  try {
+    await $fetch(
+      `${resourceServiceOptions.baseAddress}/api/v1/signal-sources/${signalSourceId}/unpublish`,
+      {
+        method: "POST",
+      }
+    );
+
+    await refresh();
+  } catch (err) {
+    console.error("Error unpublishing signal source:", err);
   }
 };
 

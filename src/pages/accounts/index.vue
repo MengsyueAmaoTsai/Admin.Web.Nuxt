@@ -10,14 +10,22 @@
         <tr>
           <th>Id</th>
           <th>Name</th>
+          <th>Created time</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="account in accounts" :key="account.id">
           <td>
-            {{ account.id }}
+            <NuxtLink :to="`accounts/${account.id}`">{{ account.id }}</NuxtLink>
           </td>
-          <td>{{ account.name }}</td>
+
+          <td>
+            <NuxtLink :to="`accounts/${account.id}`">{{
+              account.name
+            }}</NuxtLink>
+          </td>
+
+          <td>{{ account.createdTime }}</td>
         </tr>
       </tbody>
     </table>

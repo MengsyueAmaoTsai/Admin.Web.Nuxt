@@ -1,57 +1,24 @@
 <template>
   <div>
+    <h2>Instruments</h2>
     <div>
-      <button>Refresh</button>
-      <button>Manage View</button>
-      <button>Delete</button>
+      <button @click="refreshData">Refresh</button>
     </div>
 
-    <MessageBar />
-    <SearchBox />
-
-    <div>
-      {{ instruments.totalCount }}
-      {{ instruments.totalCount === 1 ? "instrument" : "instruments" }}
-      found
-    </div>
-
-    <table>
+    <div v-if="instruments.length === 0">No data</div>
+    <table v-else>
       <thead>
         <tr>
-          <th>
-            <input type="checkbox" />
-          </th>
           <th>Symbol</th>
           <th>Description</th>
-          <th>Exchange</th>
+          <th>Type</th>
         </tr>
       </thead>
-
       <tbody>
-        <tr v-for="instrument in instruments.items" :key="instrument.id">
-          <td>
-            <input type="checkbox" />
-          </td>
-
-          <td>
-            <div>
-              <NuxtLink :to="`instruments/${instrument.symbol}`">{{
-                instrument.symbol
-              }}</NuxtLink>
-            </div>
-          </td>
-
-          <td>
-            <div>
-              {{ instrument.description }}
-            </div>
-          </td>
-
-          <td>
-            <div>
-              {{ instrument.exchange }}
-            </div>
-          </td>
+        <tr v-for="instrument in instruments" :key="instrument.symbol">
+          <td>{{ instrument.symbol }}</td>
+          <td>{{ instrument.description }}</td>
+          <td>{{ instrument.type }}</td>
         </tr>
       </tbody>
     </table>
@@ -67,6 +34,10 @@ const {
   execute,
   refresh,
 } = await useFetch(`${resourceServiceOptions.baseAddress}/api/v1/instruments`);
+
+const refreshData = async () => {
+  await refresh();
+};
 </script>
 
 <style lang="scss" scoped></style>
