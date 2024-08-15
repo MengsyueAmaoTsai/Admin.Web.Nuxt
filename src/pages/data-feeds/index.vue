@@ -14,14 +14,32 @@
     <table v-else>
       <thead>
         <tr>
+          <th>
+            <input
+              type="checkbox"
+              v-model="selectAll"
+              @change="selectOrUnselectAll"
+            />
+          </th>
           <th>Name</th>
           <th>Status</th>
           <th>Started time</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="dataFeed in dataFeeds" :key="dataFeed.id">
-          <td>{{ dataFeed.dataFeedName }}</td>
+        <tr v-for="dataFeed in dataFeeds" :key="dataFeed.dataFeedName">
+          <td>
+            <input
+              type="checkbox"
+              :value="dataFeed.dataFeedName"
+              v-model="selectedDataFeedNames"
+            />
+          </td>
+          <td>
+            <NuxtLink :to="`/data-feeds/${dataFeed.dataFeedName}`">{{
+              dataFeed.dataFeedName
+            }}</NuxtLink>
+          </td>
 
           <td>{{ dataFeed.status }}</td>
 
@@ -37,12 +55,25 @@
 <script lang="ts" setup>
 const resourceServiceOptions = useRuntimeConfig().public.resourceService;
 
+const selectedDataFeedNames = ref<string[]>([]);
+const selectAll = ref(false);
+
 const {
   data: dataFeeds,
   error,
   execute,
   refresh,
 } = await useFetch(`${resourceServiceOptions.baseAddress}/api/v1/data-feeds`);
+
+const selectOrUnselectAll = () => {
+  if (selectAll.value) {
+    selectedDataFeedNames.value = dataFeeds.value.map(
+      (dataFeed) => dataFeed.dataFeedName
+    );
+  } else {
+    selectedDataFeedNames.value = [];
+  }
+};
 
 const startDataFeed = async () => {
   try {

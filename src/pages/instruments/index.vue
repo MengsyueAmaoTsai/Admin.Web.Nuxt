@@ -2,6 +2,10 @@
   <div>
     <h2>Instruments</h2>
     <div>
+      <button @click="$router.push('/instruments/create')">
+        New instrument
+      </button>
+
       <button @click="refreshData">Refresh</button>
     </div>
 

@@ -56,15 +56,15 @@
 <script lang="ts" setup>
 const resourceServiceOptions = useRuntimeConfig().public.resourceService;
 
+const selectedUserIds = ref<string[]>([]);
+const selectAll = ref(false);
+
 const {
   data: users,
   error,
   execute,
   refresh,
 } = await useFetch(`${resourceServiceOptions.baseAddress}/api/v1/users`);
-
-const selectedUserIds = ref<string[]>([]);
-const selectAll = ref(false);
 
 const selectOrUnselectAll = () => {
   if (selectAll.value) {

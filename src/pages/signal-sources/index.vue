@@ -3,40 +3,12 @@
     <h1>Signal Sources</h1>
 
     <div>
-      <button @click="newSignalSourceFormVisible = true">
+      <button @click="$router.push('/signal-sources/create')">
         New signal source
       </button>
       <button @click="publishSignalSource">Publish</button>
       <button @click="unpublishSignalSource">Unpublish</button>
       <button @click="refreshData">Refresh</button>
-    </div>
-    <!-- New user form -->
-    <div v-if="newSignalSourceFormVisible">
-      <h2>New signal source</h2>
-
-      <form @submit.prevent="createSignalSource">
-        <div>
-          <label for="name">Id</label>
-          <input type="text" v-model="createSignalSourceRequest.id" />
-        </div>
-
-        <div>
-          <label for="name">Name</label>
-          <input type="text" v-model="createSignalSourceRequest.name" />
-        </div>
-
-        <div>
-          <label for="description">Description</label>
-          <input type="text" v-model="createSignalSourceRequest.description" />
-        </div>
-
-        <div>
-          <button type="submit">Submit</button>
-          <button type="button" @click="newSignalSourceFormVisible = false">
-            Cancel
-          </button>
-        </div>
-      </form>
     </div>
 
     <div v-if="signalSources.length === 0">No data</div>
@@ -75,7 +47,6 @@
 
 <script lang="ts" setup>
 const resourceServiceOptions = useRuntimeConfig().public.resourceService;
-const newSignalSourceFormVisible = ref(false);
 const createSignalSourceRequest = ref({ id: "", name: "", description: "" });
 
 const {

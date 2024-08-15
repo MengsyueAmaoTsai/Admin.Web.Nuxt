@@ -1,9 +1,13 @@
 <template>
   <div>
     <div class="toolbar">
-      <button @click="$router.push('/accounts/create')">Create account</button>
+      <button @click="$router.push('/accounts/create')">
+        New trading account
+      </button>
+
       <button @click="refreshData">Refresh</button>
     </div>
+
     <table>
       <thead>
         <tr>
@@ -12,6 +16,7 @@
           <th>Created time</th>
         </tr>
       </thead>
+
       <tbody>
         <tr v-for="account in accounts" :key="account.id">
           <td>
