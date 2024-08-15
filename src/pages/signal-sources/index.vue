@@ -7,7 +7,6 @@
         New signal source
       </button>
       <button @click="publishSignalSource">Publish</button>
-      <button @click="unpublishSignalSource">Unpublish</button>
       <button @click="refreshData">Refresh</button>
     </div>
 
@@ -16,6 +15,13 @@
     <table v-else>
       <thead>
         <tr>
+          <th>
+            <input
+              type="checkbox"
+              v-model="selectAll"
+              @change="selectOrUnselectAll"
+            />
+          </th>
           <th>Id</th>
           <th>Name</th>
           <th>Description</th>
@@ -26,6 +32,13 @@
 
       <tbody>
         <tr v-for="signalSource in signalSources" :key="signalSource.id">
+          <td>
+            <input
+              type="checkbox"
+              :value="signalSource.id"
+              v-model="selectedSourceIds"
+            />
+          </td>
           <td>
             <NuxtLink :to="`signal-sources/${signalSource.id}`">{{
               signalSource.id
@@ -47,7 +60,9 @@
 
 <script lang="ts" setup>
 const resourceServiceOptions = useRuntimeConfig().public.resourceService;
-const createSignalSourceRequest = ref({ id: "", name: "", description: "" });
+
+const selectedSourceIds = ref<string[]>([]);
+const selectAll = ref(false);
 
 const {
   data: signalSources,
@@ -58,22 +73,13 @@ const {
   `${resourceServiceOptions.baseAddress}/api/v1/signal-sources`
 );
 
-const createSignalSource = async () => {
-  try {
-    await $fetch(
-      `${resourceServiceOptions.baseAddress}/api/v1/signal-sources`,
-      {
-        method: "POST",
-        body: createSignalSourceRequest.value,
-      }
+const selectOrUnselectAll = () => {
+  if (selectAll.value) {
+    selectedSourceIds.value = signalSources.value.map(
+      (signalSource) => signalSource.id
     );
-
-    createSignalSourceRequest.value = { id: "", name: "", description: "" };
-    newSignalSourceFormVisible.value = false;
-
-    await refresh();
-  } catch (err) {
-    console.error("Error adding user:", err);
+  } else {
+    selectedSourceIds.value = [];
   }
 };
 
@@ -89,21 +95,6 @@ const publishSignalSource = async (signalSourceId: string) => {
     await refresh();
   } catch (err) {
     console.error("Error publishing signal source:", err);
-  }
-};
-
-const unpublishSignalSource = async (signalSourceId: string) => {
-  try {
-    await $fetch(
-      `${resourceServiceOptions.baseAddress}/api/v1/signal-sources/${signalSourceId}/unpublish`,
-      {
-        method: "POST",
-      }
-    );
-
-    await refresh();
-  } catch (err) {
-    console.error("Error unpublishing signal source:", err);
   }
 };
 
