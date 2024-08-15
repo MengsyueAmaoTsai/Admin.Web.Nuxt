@@ -13,6 +13,13 @@
     <table v-else>
       <thead>
         <tr>
+          <th>
+            <input
+              type="checkbox"
+              v-model="selectAll"
+              @change="selectOrUnselectAll"
+            />
+          </th>
           <th>Symbol</th>
           <th>Description</th>
           <th>Type</th>
@@ -20,6 +27,14 @@
       </thead>
       <tbody>
         <tr v-for="instrument in instruments" :key="instrument.symbol">
+          <td>
+            <input
+              type="checkbox"
+              :value="instrument.symbol"
+              v-model="selectedSymbols"
+            />
+          </td>
+
           <td>{{ instrument.symbol }}</td>
           <td>{{ instrument.description }}</td>
           <td>{{ instrument.type }}</td>
@@ -32,6 +47,9 @@
 <script lang="ts" setup>
 const resourceServiceOptions = useRuntimeConfig().public.resourceService;
 
+const selectedSymbols = ref<string[]>([]);
+const selectAll = ref(false);
+
 const {
   data: instruments,
   error,
@@ -39,6 +57,15 @@ const {
   refresh,
 } = await useFetch(`${resourceServiceOptions.baseAddress}/api/v1/instruments`);
 
+const selectOrUnselectAll = () => {
+  if (selectAll.value) {
+    selectedSymbols.value = instruments.value.map(
+      (instrument) => instrument.symbol
+    );
+  } else {
+    selectedSymbols.value = [];
+  }
+};
 const refreshData = async () => {
   await refresh();
 };
