@@ -1,11 +1,16 @@
 <template>
   <div>
+    <h1>Candlesticks</h1>
+
     <div class="toolbar">
       <button @click="createCandlestick">Create</button>
       <button @click="refreshCandlesticks">Refresh</button>
       <button @click="exportToCsv">Export to CSV</button>
     </div>
-    <table>
+
+    <div v-if="candlesticks.length === 0">No data</div>
+
+    <table v-else>
       <thead>
         <tr>
           <th>Time</th>

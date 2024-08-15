@@ -3,32 +3,14 @@
     <h1>Users</h1>
 
     <div>
-      <button @click="newUserFormVisible = true">New user</button>
+      <button @click="$router.push('users/create')">New user</button>
+      <button
+        @click="console.log(selectedUserIds)"
+        :disabled="selectedUserIds.length === 0"
+      >
+        Delete
+      </button>
       <button @click="refreshData">Refresh</button>
-    </div>
-
-    <!-- New user form -->
-    <div v-if="newUserFormVisible">
-      <h2>New user</h2>
-
-      <form @submit.prevent="createUser">
-        <div>
-          <label for="name">Name</label>
-          <input type="text" v-model="createUserRequest.name" />
-        </div>
-
-        <div>
-          <label for="email">Email</label>
-          <input type="email" v-model="createUserRequest.email" />
-        </div>
-
-        <div>
-          <button type="submit">Submit</button>
-          <button type="button" @click="newUserFormVisible = false">
-            Cancel
-          </button>
-        </div>
-      </form>
     </div>
 
     <!-- User data -->
@@ -37,6 +19,13 @@
     <table v-else>
       <thead>
         <tr>
+          <th>
+            <input
+              type="checkbox"
+              v-model="selectAll"
+              @change="selectOrUnselectAll"
+            />
+          </th>
           <th>Id</th>
           <th>Name</th>
           <th>Email</th>
@@ -45,6 +34,9 @@
       </thead>
       <tbody>
         <tr v-for="user in users" :key="user.id">
+          <td>
+            <input type="checkbox" :value="user.id" v-model="selectedUserIds" />
+          </td>
           <td>
             <NuxtLink :to="`users/${user.id}`">{{ user.id }}</NuxtLink>
           </td>
@@ -62,9 +54,6 @@
 </template>
 
 <script lang="ts" setup>
-const newUserFormVisible = ref(false);
-const createUserRequest = ref({ name: "", email: "" });
-
 const resourceServiceOptions = useRuntimeConfig().public.resourceService;
 
 const {
@@ -74,19 +63,14 @@ const {
   refresh,
 } = await useFetch(`${resourceServiceOptions.baseAddress}/api/v1/users`);
 
-const createUser = async () => {
-  try {
-    await $fetch(`${resourceServiceOptions.baseAddress}/api/v1/users`, {
-      method: "POST",
-      body: createUserRequest.value,
-    });
+const selectedUserIds = ref<string[]>([]);
+const selectAll = ref(false);
 
-    createUserRequest.value = { name: "", email: "" };
-    newUserFormVisible.value = false;
-
-    await refresh();
-  } catch (err) {
-    console.error("Error adding user:", err);
+const selectOrUnselectAll = () => {
+  if (selectAll.value) {
+    selectedUserIds.value = users.value.map((user) => user.id);
+  } else {
+    selectedUserIds.value = [];
   }
 };
 
