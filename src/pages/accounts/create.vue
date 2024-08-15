@@ -4,9 +4,14 @@
 
     <form @submit.prevent="createAccount">
       <div>
-        <label for="accountName">Name</label>
+        <label>User</label>
+      </div>
+
+      <div>
+        <label for="accountName">Account name</label>
         <input type="text" v-model="accountName" />
       </div>
+
       <div>
         <button type="submit">Review + create</button>
         <button type="button">Previous</button>
