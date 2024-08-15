@@ -1,8 +1,7 @@
 <template>
   <div>
     <div class="toolbar">
-      <button @click="createAccount">Create account</button>
-      <button @click="exportToCsv">Export to CSV</button>
+      <button @click="$router.push('/accounts/create')">Create account</button>
       <button @click="refreshData">Refresh</button>
     </div>
     <table>
@@ -41,14 +40,6 @@ const {
   execute,
   refresh,
 } = await useFetch(`${resourceServiceOptions.baseAddress}/api/v1/accounts`);
-
-const createAccount = async () => {
-  console.log("Create account");
-};
-
-const exportToCsv = async () => {
-  console.log("Export to CSV");
-};
 
 const refreshData = async () => {
   await refresh();
