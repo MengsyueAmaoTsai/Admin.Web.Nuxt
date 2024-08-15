@@ -1,62 +1,66 @@
 <template>
   <div>
-    <div>
+    <h1>New signal source</h1>
+
+    <form @submit.prevent="createSignalSource">
       <div>
         <label>Id</label>
+        <input v-model="id" />
       </div>
-      <input v-model="newSignalSource.id" />
-    </div>
 
-    <div>
       <div>
-        <label>Name</label>
+        <div>
+          <label>Name</label>
+        </div>
+        <input v-model="name" />
       </div>
-      <input v-model="newSignalSource.name" />
-    </div>
 
-    <div>
       <div>
-        <label>Description</label>
+        <div>
+          <label>Description</label>
+        </div>
+        <input v-model="description" />
       </div>
-      <input v-model="newSignalSource.description" />
-    </div>
 
-    <div @click="createSignalSource" role="button"><span>Create</span></div>
+      <div>
+        <button type="submit">Review + create</button>
+        <button type="button">Previous</button>
+        <button type="button">Next</button>
+      </div>
+    </form>
   </div>
 </template>
 
 <script lang="ts" setup>
-type CreateSignalSourceRequest = {
-  id: string;
-  name: string;
-  description: string;
-};
-
 const resourceServiceOptions = useRuntimeConfig().public.resourceService;
 const router = useRouter();
 
-const newSignalSource = ref({
-  id: "",
-  name: "",
-  description: "",
-});
+const id = ref<string>("");
+const name = ref<string>("");
+const description = ref<string>("");
 
-async function createSignalSource() {
+const createSignalSource = async () => {
   try {
-    const response = await $fetch(
+    await $fetch(
       `${resourceServiceOptions.baseAddress}/api/v1/signal-sources`,
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+        body: {
+          id: id.value,
+          name: name.value,
+          description: description.value,
         },
-        body: newSignalSource.value,
       }
     );
 
+    id.value = "";
+    name.value = "";
+    description.value = "";
     router.push("/signal-sources");
-  } catch (error) {}
-}
+  } catch (err) {
+    console.error("Error adding signal source:", err);
+  }
+};
 </script>
 
 <style lang="scss" scoped></style>
