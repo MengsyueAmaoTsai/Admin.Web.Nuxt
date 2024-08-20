@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="web-container">
+    <TopBar></TopBar>
     <slot />
   </div>
 </template>
