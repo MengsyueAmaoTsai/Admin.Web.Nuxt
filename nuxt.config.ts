@@ -26,7 +26,7 @@ export default defineNuxtConfig({
 					? "https://admin.richillcapital.com"
 					: "http://localhost:9995",
 
-			resourceService: {
+			apiService: {
 				baseAddress:
 					process.env.NODE_ENV === "production"
 						? "https://api.richillcapital.com"

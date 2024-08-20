@@ -1,80 +1,41 @@
 <template>
   <div>
-    <h1>Users</h1>
-
     <div>
-      <button @click="$router.push('users/create')">New user</button>
-      <button
-        @click="console.log(selectedUserIds)"
-        :disabled="selectedUserIds.length === 0"
-      >
-        Delete
-      </button>
+      <button>New user</button>
+      <button>Delete</button>
+      <button>Download users</button>
+      <button>Bulk operations</button>
       <button @click="refreshData">Refresh</button>
+      <button>Manage view</button>
+      <button>Per-user MFA</button>
     </div>
 
-    <!-- User data -->
-    <div v-if="users.length === 0">No data</div>
+    <div>Azure Active Directory is now Microsoft Entra ID.</div>
 
-    <table v-else>
-      <thead>
-        <tr>
-          <th>
-            <input
-              type="checkbox"
-              v-model="selectAll"
-              @change="selectOrUnselectAll"
-            />
-          </th>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Created time</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="user in users" :key="user.id">
-          <td>
-            <input type="checkbox" :value="user.id" v-model="selectedUserIds" />
-          </td>
-          <td>
-            <NuxtLink :to="`users/${user.id}`">{{ user.id }}</NuxtLink>
-          </td>
+    <section>
+      <input placeholder="Search" />
+      <button>Add filter</button>
+    </section>
 
-          <td>
-            <NuxtLink :to="`users/${user.id}`">{{ user.name }}</NuxtLink>
-          </td>
-
-          <td>{{ user.email }}</td>
-          <td>{{ user.createdTime }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <section>
+      {{ users.length }} {{ users.length === 1 ? "user" : "users" }} found
+    </section>
   </div>
 </template>
 
 <script lang="ts" setup>
-const resourceServiceOptions = useRuntimeConfig().public.resourceService;
-
-const selectedUserIds = ref<string[]>([]);
-const selectAll = ref(false);
+const baseAddress = useRuntimeConfig().public.apiService.baseAddress;
 
 const {
   data: users,
   error,
   execute,
   refresh,
-} = await useFetch(`${resourceServiceOptions.baseAddress}/api/v1/users`);
-
-const selectOrUnselectAll = () => {
-  if (selectAll.value) {
-    selectedUserIds.value = users.value.map((user) => user.id);
-  } else {
-    selectedUserIds.value = [];
-  }
-};
+} = useFetch(`${baseAddress}/api/v1/users`);
 
 const refreshData = async () => {
   await refresh();
 };
 </script>
+
+<style lang="scss" scoped></style>
