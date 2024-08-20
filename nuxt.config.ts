@@ -43,7 +43,7 @@ export default defineNuxtConfig({
 			},
 		},
 	},
-	css: ["~/assets/styles/main.scss"],
+	css: ["~/assets/styles/global.scss"],
 	plugins: [
 		{
 			src: "~/plugins/fluent-ui.ts",
