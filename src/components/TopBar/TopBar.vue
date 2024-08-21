@@ -1,11 +1,10 @@
 <template>
   <div class="top-bar un-selectable">
     <div class="top-bar-content">
-      <!-- <TopBarHamburger /> -->
       <TopBarButton icon="Hamburger" tooltip-text="Show portal menu" />
 
       <h1 class="top-bar-brand">
-        <a class="top-bar-brand__link">Microsoft Azure</a>
+        <a class="top-bar-brand__link">Richill Capital Admin</a>
       </h1>
 
       <div class="top-bar-placeholder"></div>
