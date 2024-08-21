@@ -9,7 +9,7 @@
 
       <div class="top-bar-placeholder"></div>
 
-      <TopBarSearch></TopBarSearch>
+      <TopBarSearch />
 
       <div class="top-bar-buttons">
         <TopBarButton icon="CloudShell" tooltip-text="Cloud Shell" />
@@ -20,7 +20,7 @@
         <TopBarButton icon="Settings" tooltip-text="Settings" />
       </div>
 
-      <TopBarCurrentUser></TopBarCurrentUser>
+      <TopBarCurrentUser />
     </div>
   </div>
 </template>
