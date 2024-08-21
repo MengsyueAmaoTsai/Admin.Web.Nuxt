@@ -9,6 +9,7 @@
       </h1>
 
       <div class="top-bar-placeholder"></div>
+
       <TopBarSearch></TopBarSearch>
 
       <div class="top-bar-buttons">
