@@ -32,3 +32,28 @@ body {
     fill: var(--colorIconPrimary);
     background-color: var(--colorContainerBackgroundPrimary);
 }
+
+a {
+    text-decoration: none;
+}
+
+a[href] {
+    -webkit-touch-callout: default;
+}
+
+[role="button"],
+[role="link"] {
+  cursor: pointer;
+}
+  
+/* Interface */
+.hide-focus-outline {
+    outline: 0 !important;
+}
+
+.un-selectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
