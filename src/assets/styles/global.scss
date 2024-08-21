@@ -41,6 +41,10 @@ a[href] {
     -webkit-touch-callout: default;
 }
 
+svg {
+    overflow: hidden;
+}
+
 button, input, select, textarea {
     font-family: az_ea_font, "Segoe UI", az_font, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-weight: 400;
