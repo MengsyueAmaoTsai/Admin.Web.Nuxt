@@ -2,10 +2,7 @@
   <div class="top-bar un-selectable">
     <div class="top-bar-content">
       <!-- <TopBarHamburger /> -->
-      <TopBarButton
-        icon="Hamburger"
-        tooltip-text="Show portal menu"
-      ></TopBarButton>
+      <TopBarButton icon="Hamburger" tooltip-text="Show portal menu" />
 
       <h1 class="top-bar-brand">
         <a class="top-bar-brand__link">Microsoft Azure</a>
@@ -15,23 +12,10 @@
       <TopBarSearch></TopBarSearch>
 
       <div class="top-bar-buttons">
-        <TopBarButton
-          icon="Notifications"
-          tooltip-text="Notifications"
-        ></TopBarButton>
-        <!-- <div>
-          <a>
-            <svg
-              height="100%"
-              width="100%"
-              aria-hidden="true"
-              role="presentation"
-              focusable="false"
-            >
-              <use href="#Notifications"></use>
-            </svg>
-          </a>
-        </div> -->
+        <div class="top-bar-notifications">
+          <TopBarButton icon="Notifications" tooltip-text="Notifications" />
+        </div>
+        <TopBarButton icon="Settings" tooltip-text="Settings" />
       </div>
 
       <TopBarCurrentUser></TopBarCurrentUser>
@@ -93,5 +77,14 @@
 
 .top-bar-placeholder {
   flex: 1 1 auto;
+}
+
+.top-bar-buttons {
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.top-bar-notifications {
+  position: relative;
 }
 </style>
