@@ -40,6 +40,44 @@
                 >
                   <div class="current-user-picture" role="presentation"></div>
                 </a>
+
+                <div class="current-user-details">
+                  <div class="current-user-details-primary">
+                    mengsyue.tsai@outlook.com
+                  </div>
+
+                  <div class="current-user-details-secondary">
+                    mengsyue.tsai@outlook.com
+                  </div>
+
+                  <div class="current-user-commands">
+                    <button class="profile-button" type="button">
+                      My Microsoft Account
+                    </button>
+
+                    <div class="more-commands">
+                      <button
+                        class="command-dropdown-button"
+                        type="button"
+                        @click="commandMenuVisible = !commandMenuVisible"
+                      >
+                        <div class="command-dropdown-button-icon"></div>
+                      </button>
+
+                      <ul class="command-list" v-show="commandMenuVisible">
+                        <li
+                          v-for="command in commands"
+                          role="none"
+                          class="command-list-item"
+                        >
+                          <button class="command-button">
+                            {{ command.name }}
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <a class="sign-out-button" role="button" href="/" target="_top"
@@ -72,11 +110,22 @@
 
 <script lang="ts" setup>
 const menuVisible = ref<boolean>(false);
+const commandMenuVisible = ref<boolean>(false);
+
 const currentUser = {
   name: "Mengsyue Amao Tsai",
   email: "mengsyue.tsai@outlook.com",
   avatar: "https://avatars.githubusercontent.com/u/88216325",
 };
+
+const commands = [
+  {
+    name: "My permissions",
+  },
+  {
+    name: "View my bill",
+  },
+];
 </script>
 
 <style>
@@ -228,6 +277,7 @@ const currentUser = {
   margin-right: 4px;
   width: 80px;
 }
+
 .current-account-company-name {
   clip: rect(1px, 1px, 1px, 1px);
   -webkit-clip-path: inset(50%);
@@ -327,6 +377,63 @@ const currentUser = {
   background-image: url("https://avatars.githubusercontent.com/u/88216325");
 }
 
+.current-user-details {
+  font-family: "Segoe UI", "Segoe UI Web Regular", "Segoe UI Symbol",
+    "Helvetica Neue", "BBAlpha Sans", "S60 Sans", Arial, sans-serif;
+  line-height: normal;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  font-size: 13px;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  min-width: 0;
+  width: 0;
+  padding-right: 12px;
+}
+
+.current-user-details-primary {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: "Segoe UI", "Segoe UI Web Regular", "Segoe UI Symbol",
+    "Helvetica Neue", "BBAlpha Sans", "S60 Sans", Arial, sans-serif;
+  line-height: normal;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 1px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 4px;
+  margin-top: 0;
+}
+
+.current-user-details-secondary {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: "Segoe UI", "Segoe UI Web Regular", "Segoe UI Symbol",
+    "Helvetica Neue", "BBAlpha Sans", "S60 Sans", Arial, sans-serif;
+  line-height: normal;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 1px;
+  margin-top: 3px;
+  font-size: 13px;
+}
+
+.current-user-commands {
+  position: relative;
+  font-family: "Segoe UI", "Segoe UI Web Regular", "Segoe UI Symbol",
+    "Helvetica Neue", "BBAlpha Sans", "S60 Sans", Arial, sans-serif;
+  line-height: normal;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 1px;
+  margin-top: 4px;
+  padding: 0;
+}
 .sign-out-button {
   height: auto;
   min-width: auto;
@@ -503,5 +610,148 @@ const currentUser = {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 12px;
+}
+
+.profile-button {
+  height: auto;
+  min-width: auto;
+  min-height: auto;
+  border-style: none;
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+  outline-style: none !important;
+  background-color: transparent;
+  text-decoration: none;
+  text-align: left;
+  font-family: "Segoe UI", "Segoe UI Web Regular", "Segoe UI Symbol",
+    "Helvetica Neue", "BBAlpha Sans", "S60 Sans", Arial, sans-serif;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 1px;
+  font-size: 13px;
+  margin-right: 34px;
+  display: block;
+  max-width: fit-content;
+  color: #0088d6;
+  background-color: inherit;
+  text-decoration: none;
+}
+
+.more-commands {
+  font-family: "Segoe UI", "Segoe UI Web Regular", "Segoe UI Symbol",
+    "Helvetica Neue", "BBAlpha Sans", "S60 Sans", Arial, sans-serif;
+  line-height: normal;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  top: 1px;
+  right: 0;
+}
+
+.command-dropdown-button {
+  height: auto;
+  min-width: auto;
+  min-height: auto;
+  border-style: none;
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+  outline-style: none !important;
+  background-color: transparent;
+  text-decoration: none;
+  text-align: left;
+  font-family: "Segoe UI", "Segoe UI Web Regular", "Segoe UI Symbol",
+    "Helvetica Neue", "BBAlpha Sans", "S60 Sans", Arial, sans-serif;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  background-color: #1a1a1a;
+}
+.command-dropdown-button-icon {
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  font-family: "Segoe UI", "Segoe UI Web Regular", "Segoe UI Symbol",
+    "Helvetica Neue", "BBAlpha Sans", "S60 Sans", Arial, sans-serif;
+  line-height: normal;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='%23fff'%3E%3Cg class='mectrl_fill'%3E%3Ccircle r='2' cx='12' cy='24'/%3E%3Ccircle r='2' cx='24' cy='24'/%3E%3Ccircle r='2' cx='36' cy='24'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.command-list {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  list-style: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: visibility 0s linear 130ms, opacity 130ms ease;
+  transition: visibility 0s linear 130ms, opacity 130ms ease;
+  max-width: 260px;
+  min-width: 130px;
+  margin: 0;
+  padding: 0;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  border: solid 1px #ccc !important;
+  color: #333 !important;
+  background-color: #fff !important;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+  color: #fff !important;
+  background-color: #1a1a1a !important;
+  inset: -55.5px auto auto -128px;
+}
+
+.command-list-item {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  height: 36px;
+}
+
+.command-button {
+  height: auto;
+  min-width: auto;
+  min-height: auto;
+  border-style: none;
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+  outline-style: none !important;
+  background-color: transparent;
+  text-decoration: none;
+  text-align: left;
+  font-family: "Segoe UI", "Segoe UI Web Regular", "Segoe UI Symbol",
+    "Helvetica Neue", "BBAlpha Sans", "S60 Sans", Arial, sans-serif;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding: 0 10px;
+  line-height: 36px;
+  font-size: 14px;
+  color: #fff !important;
+  background-color: #1a1a1a !important;
 }
 </style>
