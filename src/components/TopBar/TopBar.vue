@@ -16,4 +16,12 @@
 
 <script lang="ts" setup></script>
 
-<style></style>
+<style lang="scss" scoped>
+.top-bar {
+  height: 40px;
+  position: relative;
+  z-index: 5;
+  flex: 0 0 auto;
+  font-size: 13px;
+}
+</style>
