@@ -29,8 +29,8 @@ body {
 }
 
 body {
-    fill: var(--colorIconPrimary);
-    background-color: var(--colorContainerBackgroundPrimary);
+    fill: $color-icon-primary;
+    background-color: $color-container-background-primary;
 }
 
 a {
@@ -39,6 +39,22 @@ a {
 
 a[href] {
     -webkit-touch-callout: default;
+}
+
+button, input, select, textarea {
+    font-family: az_ea_font, "Segoe UI", az_font, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    border-radius: 0;
+}
+
+button, 
+[type="button"], 
+[type="reset"], 
+[type="submit"] {
+    font-size: 13px;
+    line-height: 1.385;
+    background: none;
+    color: inherit;
 }
 
 [role="button"],
