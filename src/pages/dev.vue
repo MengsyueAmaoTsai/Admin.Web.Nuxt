@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HamburgerIcon></HamburgerIcon>
+    <TopBar></TopBar>
   </div>
 </template>
 
