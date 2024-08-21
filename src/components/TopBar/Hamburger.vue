@@ -43,7 +43,7 @@ svg {
   color: #1890f1;
 }
 
-.mode-standard-contrast .top-bar-button,
+.top-bar-button,
 .mode-standard-contrast .top-bar-avatarmenu .dropmenu-button {
   fill: #fff;
 }
