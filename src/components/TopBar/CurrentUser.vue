@@ -1,7 +1,10 @@
 <template>
   <div class="current-user">
     <button class="current-user-menu-button">
-      <div class="current-user-menu-header">
+      <div
+        class="current-user-menu-header"
+        :title="`Name: ${currentUser.name}\nEmail: ${currentUser.email}`"
+      >
         <div class="current-user-info-container">
           <div class="current-user-email">{{ currentUser.email }}</div>
           <div class="current-user-name">{{ currentUser.name }}</div>

@@ -4,7 +4,9 @@
       <TopBarButton icon="Hamburger" tooltip-text="Show portal menu" />
 
       <h1 class="top-bar-brand">
-        <a class="top-bar-brand__link">Richill Capital Admin</a>
+        <a class="top-bar-brand__link" title="Richill Capital Admin"
+          >Richill Capital Admin</a
+        >
       </h1>
 
       <div class="top-bar-placeholder"></div>
