@@ -52,7 +52,7 @@
 
                   <div class="current-user-commands">
                     <button class="profile-button" type="button">
-                      My Microsoft Account
+                      My Richill Capital Account
                     </button>
 
                     <div class="more-commands">
