@@ -1,7 +1,53 @@
 <template>
   <div class="portal">
     <TopBar />
-    <slot />
+
+    <!-- Not implemented -->
+    <div class="global-notification-banner"></div>
+
+    <!-- Not implemented -->
+    <div class="portal-tip"></div>
+
+    <div class="portal-region">
+      <div class="portal-main-region">
+        <div class="portal-main">
+          <!-- Not implemented -->
+          <div class="side-bar"></div>
+
+          <main class="portal-content">
+            <!-- Not implemented -->
+            <div class="settings-layout"></div>
+
+            <!-- Not implemented -->
+            <div class="start-board"></div>
+
+            <div class="home-target">
+              <div class="home-container-all">
+                <!-- Not implemented -->
+                <div class="home-fragments"></div>
+                <slot />
+              </div>
+            </div>
+
+            <!-- Not implemented -->
+            <div class="journey-target"></div>
+          </main>
+
+          <!-- Not implemented -->
+          <div class="context-pane"></div>
+          <div class="context-pane"></div>
+        </div>
+
+        <!-- Not implemented -->
+        <div class="portal-control"></div>
+      </div>
+
+      <!-- Not implemented -->
+      <div></div>
+    </div>
+
+    <!-- Not implemented -->
+    <div class="context-menu"></div>
   </div>
   <SvgProvider />
 </template>
