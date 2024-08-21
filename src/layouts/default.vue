@@ -1,5 +1,6 @@
 <template>
   <div class="web-container">
+    <TopBar />
     <slot />
   </div>
   <SvgProvider />
