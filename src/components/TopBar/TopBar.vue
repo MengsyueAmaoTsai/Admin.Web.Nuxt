@@ -12,6 +12,8 @@
       <TopBarSearch></TopBarSearch>
 
       <div class="top-bar-buttons">
+        <TopBarButton icon="CloudShell" tooltip-text="Cloud Shell" />
+
         <div class="top-bar-notifications">
           <TopBarButton icon="Notifications" tooltip-text="Notifications" />
         </div>
