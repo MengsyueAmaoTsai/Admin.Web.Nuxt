@@ -1,8 +1,7 @@
 <template>
-  <div class="web-container">
-    <slot />
+  <div>
+    <HamburgerIcon></HamburgerIcon>
   </div>
-  <SvgProvider />
 </template>
 
 <style lang="scss" scoped></style>
