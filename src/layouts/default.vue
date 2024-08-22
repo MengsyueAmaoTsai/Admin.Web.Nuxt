@@ -12,7 +12,7 @@
       <div class="portal-main-region">
         <div class="portal-main">
           <!-- Not implemented -->
-          <div class="side-bar"></div>
+          <SideBar v-show="true"></SideBar>
 
           <main class="portal-content">
             <!-- Not implemented -->
