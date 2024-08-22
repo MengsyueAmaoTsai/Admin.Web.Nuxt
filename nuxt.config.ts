@@ -1,10 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+	// Diagnostics and debugging
 	debug: process.env.NODE_ENV !== "production",
 	devtools: { enabled: process.env.NODE_ENV !== "production" },
+
+	// SSR
 	ssr: true,
-	srcDir: "src/",
+
+	// Directory structure
 	rootDir: "./",
+	srcDir: "src/",
 	dir: {
 		pages: "pages",
 		layouts: "layouts",
@@ -13,12 +18,20 @@ export default defineNuxtConfig({
 		modules: "modules",
 		assets: "assets",
 	},
-	appConfig: {
-		nuxt: {
-			appId: "RichillCapital.Admin.Web",
-			version: "1.0.0.0",
+
+	// Styles
+	css: ["~/assets/styles/global.scss"],
+
+	// Plugins and modules
+	plugins: [
+		{
+			src: "~/plugins/fluent-ui.ts",
+			mode: "client",
 		},
-	},
+	],
+	modules: ["@pinia/nuxt"],
+
+	// Configurations
 	runtimeConfig: {
 		public: {
 			origin:
@@ -43,12 +56,10 @@ export default defineNuxtConfig({
 			},
 		},
 	},
-	css: ["~/assets/styles/global.scss"],
-	plugins: [
-		{
-			src: "~/plugins/fluent-ui.ts",
-			mode: "client",
+	appConfig: {
+		nuxt: {
+			appId: "RichillCapital.Admin.Web",
+			version: "1.0.0.0",
 		},
-	],
-	modules: ["@pinia/nuxt"],
+	},
 });
