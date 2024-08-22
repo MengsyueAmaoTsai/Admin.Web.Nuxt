@@ -12,7 +12,7 @@
       <div class="portal-main-region">
         <div class="portal-main">
           <!-- Not implemented -->
-          <SideBar v-show="true"></SideBar>
+          <SideBar v-show="sideBarVisible"></SideBar>
 
           <main class="portal-content">
             <!-- Not implemented -->
@@ -51,6 +51,11 @@
   </div>
   <SvgProvider />
 </template>
+
+<script lang="ts" setup>
+const sideBarVisible = useState("sideBarVisible", () => false);
+console.log(sideBarVisible.value);
+</script>
 
 <style lang="scss" scoped>
 .portal {

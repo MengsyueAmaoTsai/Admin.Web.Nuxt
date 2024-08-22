@@ -43,7 +43,7 @@
 
                 <div class="current-user-details">
                   <div class="current-user-details-primary">
-                    mengsyue.tsai@outlook.com
+                    Mengsyue Amao Tsai
                   </div>
 
                   <div class="current-user-details-secondary">
@@ -52,7 +52,7 @@
 
                   <div class="current-user-commands">
                     <button class="profile-button" type="button">
-                      My Richill Capital Account
+                      My Richill Capital account
                     </button>
 
                     <div class="more-commands">

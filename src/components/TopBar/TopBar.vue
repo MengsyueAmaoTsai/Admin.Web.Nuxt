@@ -1,7 +1,11 @@
 <template>
   <div class="top-bar un-selectable">
     <div class="top-bar-content">
-      <TopBarButton icon="Hamburger" tooltip-text="Show portal menu" />
+      <TopBarButton
+        icon="Hamburger"
+        tooltip-text="Show portal menu"
+        @click="sideBarVisible = !sideBarVisible"
+      />
 
       <h1 class="top-bar-brand">
         <a class="top-bar-brand__link" title="Richill Capital Admin"
@@ -27,7 +31,9 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const sideBarVisible = useState("sideBarVisible");
+</script>
 
 <style lang="scss" scoped>
 .top-bar {

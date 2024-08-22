@@ -2,7 +2,11 @@
   <div class="side-bar">
     <nav class="side-bar-nav">
       <div class="side-bar-header">
-        <button class="side-bar-hamburger" title="Hide portal menu">
+        <button
+          class="side-bar-hamburger"
+          title="Hide portal menu"
+          @click="visible = !visible"
+        >
           <div class="side-bar-icon">
             <svg
               style="height: 16px; width: 16px"
@@ -33,7 +37,9 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const visible = useState("sideBarVisible");
+</script>
 
 <style lang="scss" scoped>
 .side-bar {
