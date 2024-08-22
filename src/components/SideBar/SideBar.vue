@@ -23,8 +23,7 @@
         <a class="side-bar-menu-toggle-link"></a>
         <div class="side-bar-divider"></div>
       </div>
-
-      <div class="side-bar-top"></div>
+      <SideBarTop></SideBarTop>
 
       <div class="side-bar-favorites"></div>
 
