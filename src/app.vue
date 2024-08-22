@@ -1,6 +1,6 @@
 <template>
   <NuxtRouteAnnouncer />
-  <NuxtLayout>
+  <NuxtLayout name="default">
     <NuxtPage />
   </NuxtLayout>
 </template>
