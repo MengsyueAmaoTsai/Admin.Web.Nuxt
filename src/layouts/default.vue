@@ -54,7 +54,6 @@
 
 <script lang="ts" setup>
 const sideBarVisible = useState("sideBarVisible", () => false);
-console.log(sideBarVisible.value);
 </script>
 
 <style lang="scss" scoped>
