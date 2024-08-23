@@ -18,6 +18,7 @@
     "@pinia/nuxt": "^0.5.1",
     "lodash-es": "^4.17.21",
     "nuxt": "^3.12.1",
+    "nuxt-security": "2.0.0-rc.9",
     "oidc-client-ts": "^3.0.1",
     "pinia": "^2.1.7",
     "vue": "^3.4.27",

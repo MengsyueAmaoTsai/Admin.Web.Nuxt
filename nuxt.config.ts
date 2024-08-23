@@ -29,7 +29,7 @@ export default defineNuxtConfig({
 			mode: "client",
 		},
 	],
-	modules: ["@pinia/nuxt"],
+	modules: ["@pinia/nuxt", "nuxt-security"],
 
 	// Configurations
 	runtimeConfig: {
