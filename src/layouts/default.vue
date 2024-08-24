@@ -37,16 +37,7 @@
               </div>
 
               <!-- Not implemented -->
-              <div class="journey-layout">
-                <iframe
-                  class="part-frame"
-                  allow="microphone *; encrypted-media *;clipboard-read;clipboard-write;"
-                  role="presentation"
-                  allowfullscreen="true"
-                  sandbox="allow-scripts allow-popups allow-modals allow-forms allow-popups-to-escape-sandbox allow-downloads allow-presentation allow-same-origin"
-                  src="http://localhost:9995/users"
-                ></iframe>
-              </div>
+              <div class="journey-layout"></div>
             </div>
           </main>
 
