@@ -1,0 +1,53 @@
+name: Pipelines
+
+on:
+  push:
+    branches:
+      - develop
+      - master
+      - feature/**
+      - release/**
+      - hotfix/**
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  build-and-test: 
+    runs-on: windows-latest
+    if: github.ref != 'refs/heads/master'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - name: Install dependencies
+        run: |
+          npm i -g pnpm 
+          pnpm i
+
+      - name: Test
+        run: |
+          pnpm run lint
+          pnpm run build
+          pnpm run test
+
+  release:
+    runs-on: windows-latest
+    if: startsWith(github.ref, 'refs/heads/release/')
+    needs: build-and-test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
