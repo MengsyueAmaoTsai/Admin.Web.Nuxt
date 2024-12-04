@@ -24,8 +24,15 @@ export type UserResponse = {
 	createdTime: Date;
 };
 
-export type UserDetailsResponse = UserResponse;
+export type CreateInstrumentRequest = {
+	symbol: string;
+	description: string;
+	type: string;
+};
 
+export type InstrumentCreatedResponse = CreatedResponse;
+
+export type UserDetailsResponse = UserResponse;
 
 export type InstrumentResponse = {
 	id: string;
@@ -35,6 +42,8 @@ export type InstrumentResponse = {
 	createdTime: Date;
 };
 
+export type InstrumentDetailsResponse = InstrumentResponse;
+
 export interface IResourceService {
 	listUsers(): Promise<UserResponse[]>;
 	createUser(request: CreateUserRequest): Promise<UserCreatedResponse>;
@@ -42,6 +51,10 @@ export interface IResourceService {
 	deleteUser(id: string): Promise<void>;
 
 	listInstruments(): Promise<InstrumentResponse[]>;
+	createInstrument(
+		request: CreateInstrumentRequest,
+	): Promise<InstrumentCreatedResponse>;
+	getInstrument(symbol: string): Promise<InstrumentDetailsResponse>;
 }
 
 type ResourceOptions = {
@@ -70,7 +83,29 @@ class ResourceService implements IResourceService {
 	}
 
 	public async listInstruments(): Promise<InstrumentResponse[]> {
-		return await this.invoke<InstrumentResponse[]>("GET", "/api/v1/instruments");
+		return await this.invoke<InstrumentResponse[]>(
+			"GET",
+			"/api/v1/instruments",
+		);
+	}
+
+	public async createInstrument(
+		request: CreateInstrumentRequest,
+	): Promise<InstrumentCreatedResponse> {
+		return this.invoke<InstrumentCreatedResponse>(
+			"POST",
+			"/api/v1/instruments",
+			request,
+		);
+	}
+
+	public async getInstrument(
+		symbol: string,
+	): Promise<InstrumentDetailsResponse> {
+		return await this.invoke<InstrumentDetailsResponse>(
+			"GET",
+			`/api/v1/instruments/${symbol}`,
+		);
 	}
 
 	private async invoke<TResponse>(
