@@ -13,33 +13,7 @@
     </div>
 
     <div class="user-table">
-      <table>
-        <thead>
-          <tr>
-            <td>Id</td>
-            <td>Email</td>
-            <td>Name</td>
-            <td>Created time</td>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr v-if="users.length === 0">
-            <td colspan="4">No results.</td>
-          </tr>
-
-          <tr v-for="user in users" :key="user.id">
-            <td>{{ user.id }}</td>
-            <td>
-              <a :href="`/users/${user.id}`">
-                {{ user.email }}
-              </a>
-            </td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.createdTime.toLocaleString() }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <DataGrid :items="users"></DataGrid>
     </div>
   </div>
 </template>
@@ -59,11 +33,11 @@ const users = ref<
 onMounted(async () => {
   const result = await $resources.listUsers();
 
-  users.value = result.map((u) => ({
-    id: u.id,
-    email: u.email,
-    name: u.name,
-    createdTime: new Date(u.createdTime),
+  users.value = result.map((user) => ({
+    id: user.id,
+    email: user.email,
+    name: user.name,
+    createdTime: new Date(user.createdTime),
   }));
 });
 </script>
@@ -116,37 +90,6 @@ onMounted(async () => {
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
-}
-
-/* User table */
-.user-table table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.user-table table thead {
-  background-color: #f4f4f4;
-  color: #333;
-}
-
-.user-table table td {
-  padding: 12px;
-  text-align: left;
-  border: 1px solid #ddd;
-}
-
-.user-table table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.user-table table tr:hover {
-  background-color: #f1f1f1;
-}
-
-.user-table table td[colspan="4"] {
-  text-align: center;
-  color: #888;
 }
 
 button {
