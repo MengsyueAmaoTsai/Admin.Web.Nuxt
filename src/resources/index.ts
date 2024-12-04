@@ -26,11 +26,22 @@ export type UserResponse = {
 
 export type UserDetailsResponse = UserResponse;
 
+
+export type InstrumentResponse = {
+	id: string;
+	symbol: string;
+	description: string;
+	type: string;
+	createdTime: Date;
+};
+
 export interface IResourceService {
 	listUsers(): Promise<UserResponse[]>;
 	createUser(request: CreateUserRequest): Promise<UserCreatedResponse>;
 	getUser(id: string): Promise<UserDetailsResponse>;
 	deleteUser(id: string): Promise<void>;
+
+	listInstruments(): Promise<InstrumentResponse[]>;
 }
 
 type ResourceOptions = {
@@ -56,6 +67,10 @@ class ResourceService implements IResourceService {
 
 	public async deleteUser(id: string): Promise<void> {
 		throw new Error("Method not implemented.");
+	}
+
+	public async listInstruments(): Promise<InstrumentResponse[]> {
+		return await this.invoke<InstrumentResponse[]>("GET", "/api/v1/instruments");
 	}
 
 	private async invoke<TResponse>(
