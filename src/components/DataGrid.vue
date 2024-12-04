@@ -39,7 +39,13 @@ table {
   border-collapse: collapse;
 }
 
-th,
+th {
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
 td {
   border: 1px solid #ccc;
   padding: 8px;
