@@ -29,7 +29,11 @@
         <tr v-for="user of users">
           <td><input type="checkbox" /></td>
           <td>{{ user.id }}</td>
-          <td>{{ user.email }}</td>
+          <td>
+            <a :href="`/users/${user.id}`">
+              {{ user.email }}
+            </a>
+          </td>
           <td>{{ user.name }}</td>
           <td>{{ user.createdTime.toLocaleString() }}</td>
         </tr>
