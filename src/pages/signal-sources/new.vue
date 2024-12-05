@@ -51,7 +51,7 @@
         <button
           type="button"
           class="secondary-button"
-          @click="navigateTo('/instruments')"
+          @click="navigateTo('/signal-sources')"
         >
           Back
         </button>
