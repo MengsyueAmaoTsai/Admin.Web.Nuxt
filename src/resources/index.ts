@@ -57,6 +57,25 @@ export type AccountResponse = {
 	createdTime: Date;
 };
 
+export type CreateSignalSourceRequest = {
+	id: string;
+	name: string;
+	description: string;
+	version: string;
+}
+
+export type SignalSourceCreatedResponse = CreatedResponse;
+
+export type SignalSourceResponse = {
+	id: string;
+	name: string;
+	description: string;
+	version: string;
+	createdTime: Date;
+}
+
+export type SignalSourceDetailsResponse = SignalSourceResponse;
+
 export type AccountDetailsResponse = AccountResponse;
 
 export interface IResourceService {
@@ -74,6 +93,10 @@ export interface IResourceService {
 	listAccounts(): Promise<AccountResponse[]>;
 	createAccount(request: CreateAccountRequest): Promise<AccountCreatedResponse>;
 	getAccount(id: string): Promise<AccountDetailsResponse>;
+
+	createSignalSource(request: CreateSignalSourceRequest): Promise<SignalSourceCreatedResponse>;
+	listSignalSources(): Promise<SignalSourceResponse[]>;
+	getSignalSource(id: string): Promise<SignalSourceDetailsResponse>;
 }
 
 type ResourceOptions = {
@@ -145,6 +168,27 @@ class ResourceService implements IResourceService {
 		return await this.invoke<AccountDetailsResponse>(
 			"GET",
 			`/api/v1/accounts/${id}`,
+		);
+	}
+
+	public async createSignalSource(
+		request: CreateSignalSourceRequest,
+	): Promise<SignalSourceCreatedResponse> {
+		return this.invoke<SignalSourceCreatedResponse>(
+			"POST",
+			"/api/v1/signal-sources",
+			request,
+		);
+	}
+
+	public async listSignalSources(): Promise<SignalSourceResponse[]> {
+		return await this.invoke<SignalSourceResponse[]>("GET", "/api/v1/signal-sources");
+	}
+
+	public async getSignalSource(id: string): Promise<SignalSourceDetailsResponse> {
+		return await this.invoke<SignalSourceDetailsResponse>(
+			"GET",
+			`/api/v1/signal-sources/${id}`,
 		);
 	}
 
