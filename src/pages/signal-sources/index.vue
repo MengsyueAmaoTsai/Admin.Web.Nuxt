@@ -32,6 +32,7 @@ const signalSources = ref<
     name: string;
     description: string;
     version: string;
+    stage: string;
     createdTime: Date;
   }[]
 >([]);
@@ -44,6 +45,7 @@ onMounted(async () => {
     name: source.name,
     description: source.description,
     version: source.version,
+    stage: source.stage,
     createdTime: new Date(source.createdTime),
   }));
 });

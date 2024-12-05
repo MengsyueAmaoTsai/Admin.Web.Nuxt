@@ -5,6 +5,7 @@
       <p>Name: {{ signalSource.name }}</p>
       <p>Description: {{ signalSource.description }}</p>
       <p>Version: {{ signalSource.version }}</p>
+      <p>Stage: {{ signalSource.stage }}</p>
       <p>Created time: {{ signalSource.createdTime.toLocaleString() }}</p>
     </div>
 
@@ -27,6 +28,7 @@ onMounted(async () => {
     name: result.name,
     description: result.description,
     version: result.version,
+    stage: result.stage,
     createdTime: new Date(result.createdTime),
   };
 });

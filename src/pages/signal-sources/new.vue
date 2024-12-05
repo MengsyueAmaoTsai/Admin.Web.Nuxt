@@ -45,7 +45,13 @@
         </div>
         <small>Format: MAJOR.MINOR.PATCH (e.g., 1.0.0)</small>
       </div>
-
+      <div class="form-group">
+        <label>Stage</label>
+        <select v-model="newSignalSource.stage">
+          <option value="" disabled>Please select a stage</option>
+          <option value="Development">Development</option>
+        </select>
+      </div>
       <div class="form-group">
         <button type="submit" class="primary-button">Submit</button>
         <button
@@ -72,6 +78,7 @@ const newSignalSource = ref({
     minor: 0,
     patch: 1,
   },
+  stage: "",
 });
 
 const submit = async () => {
@@ -81,6 +88,7 @@ const submit = async () => {
       name: newSignalSource.value.name,
       description: newSignalSource.value.description,
       version: `${newSignalSource.value.version.major}.${newSignalSource.value.version.minor}.${newSignalSource.value.version.patch}`,
+      stage: newSignalSource.value.stage,
     });
 
     alert(`Signal source created: ${createdResponse.id}`);
