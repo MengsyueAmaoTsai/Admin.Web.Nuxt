@@ -24,13 +24,79 @@ export type UserResponse = {
 	createdTime: Date;
 };
 
+export type CreateInstrumentRequest = {
+	symbol: string;
+	description: string;
+	type: string;
+};
+
+export type InstrumentCreatedResponse = CreatedResponse;
+
 export type UserDetailsResponse = UserResponse;
+
+export type InstrumentResponse = {
+	id: string;
+	symbol: string;
+	description: string;
+	type: string;
+	createdTime: Date;
+};
+
+export type InstrumentDetailsResponse = InstrumentResponse;
+
+export type CreateAccountRequest = {
+	userId: string;
+	name: string;
+};
+export type AccountCreatedResponse = CreatedResponse;
+
+export type AccountResponse = {
+	id: string;
+	userId: string;
+	name: string;
+	createdTime: Date;
+};
+
+export type CreateSignalSourceRequest = {
+	id: string;
+	name: string;
+	description: string;
+	version: string;
+}
+
+export type SignalSourceCreatedResponse = CreatedResponse;
+
+export type SignalSourceResponse = {
+	id: string;
+	name: string;
+	description: string;
+	version: string;
+	createdTime: Date;
+}
+
+export type SignalSourceDetailsResponse = SignalSourceResponse;
+
+export type AccountDetailsResponse = AccountResponse;
 
 export interface IResourceService {
 	listUsers(): Promise<UserResponse[]>;
 	createUser(request: CreateUserRequest): Promise<UserCreatedResponse>;
 	getUser(id: string): Promise<UserDetailsResponse>;
 	deleteUser(id: string): Promise<void>;
+
+	listInstruments(): Promise<InstrumentResponse[]>;
+	createInstrument(
+		request: CreateInstrumentRequest,
+	): Promise<InstrumentCreatedResponse>;
+	getInstrument(symbol: string): Promise<InstrumentDetailsResponse>;
+
+	listAccounts(): Promise<AccountResponse[]>;
+	createAccount(request: CreateAccountRequest): Promise<AccountCreatedResponse>;
+	getAccount(id: string): Promise<AccountDetailsResponse>;
+
+	createSignalSource(request: CreateSignalSourceRequest): Promise<SignalSourceCreatedResponse>;
+	listSignalSources(): Promise<SignalSourceResponse[]>;
+	getSignalSource(id: string): Promise<SignalSourceDetailsResponse>;
 }
 
 type ResourceOptions = {
@@ -56,6 +122,74 @@ class ResourceService implements IResourceService {
 
 	public async deleteUser(id: string): Promise<void> {
 		throw new Error("Method not implemented.");
+	}
+
+	public async listInstruments(): Promise<InstrumentResponse[]> {
+		return await this.invoke<InstrumentResponse[]>(
+			"GET",
+			"/api/v1/instruments",
+		);
+	}
+
+	public async createInstrument(
+		request: CreateInstrumentRequest,
+	): Promise<InstrumentCreatedResponse> {
+		return this.invoke<InstrumentCreatedResponse>(
+			"POST",
+			"/api/v1/instruments",
+			request,
+		);
+	}
+
+	public async getInstrument(
+		symbol: string,
+	): Promise<InstrumentDetailsResponse> {
+		return await this.invoke<InstrumentDetailsResponse>(
+			"GET",
+			`/api/v1/instruments/${symbol}`,
+		);
+	}
+
+	public async listAccounts(): Promise<AccountResponse[]> {
+		return await this.invoke<AccountResponse[]>("GET", "/api/v1/accounts");
+	}
+
+	public async createAccount(
+		request: CreateAccountRequest,
+	): Promise<AccountCreatedResponse> {
+		return this.invoke<AccountCreatedResponse>(
+			"POST",
+			"/api/v1/accounts",
+			request,
+		);
+	}
+
+	public async getAccount(id: string): Promise<AccountDetailsResponse> {
+		return await this.invoke<AccountDetailsResponse>(
+			"GET",
+			`/api/v1/accounts/${id}`,
+		);
+	}
+
+	public async createSignalSource(
+		request: CreateSignalSourceRequest,
+	): Promise<SignalSourceCreatedResponse> {
+		return this.invoke<SignalSourceCreatedResponse>(
+			"POST",
+			"/api/v1/signal-sources",
+			request,
+		);
+	}
+
+	public async listSignalSources(): Promise<SignalSourceResponse[]> {
+		return await this.invoke<SignalSourceResponse[]>("GET", "/api/v1/signal-sources");
+	}
+
+	public async getSignalSource(id: string): Promise<SignalSourceDetailsResponse> {
+		return await this.invoke<SignalSourceDetailsResponse>(
+			"GET",
+			`/api/v1/signal-sources/${id}`,
+		);
 	}
 
 	private async invoke<TResponse>(

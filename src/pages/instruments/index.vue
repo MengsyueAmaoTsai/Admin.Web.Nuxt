@@ -1,11 +1,14 @@
 <template>
   <div class="container">
     <div>
-      <button @click="navigateTo('/users/new')">New user</button>
+      <button @click="navigateTo('/instruments/new')">New instrument</button>
     </div>
 
     <div class="result-info">
-      {{ users.length }} user{{ users.length === 1 ? "" : "s" }} found
+      {{ instruments.length }} instrument{{
+        instruments.length === 1 ? "" : "s"
+      }}
+      found
     </div>
 
     <div class="search-bar">
@@ -13,7 +16,7 @@
     </div>
 
     <div>
-      <DataGrid :items="users"></DataGrid>
+      <DataGrid :items="instruments"></DataGrid>
     </div>
   </div>
 </template>
@@ -21,23 +24,25 @@
 <script setup lang="ts">
 const { $resources } = useNuxtApp();
 
-const users = ref<
+const instruments = ref<
   {
     id: string;
-    email: string;
-    name: string;
+    symbol: string;
+    description: string;
+    type: string;
     createdTime: Date;
   }[]
 >([]);
 
 onMounted(async () => {
-  const result = await $resources.listUsers();
+  const result = await $resources.listInstruments();
 
-  users.value = result.map((user) => ({
-    id: user.id,
-    email: user.email,
-    name: user.name,
-    createdTime: new Date(user.createdTime),
+  instruments.value = result.map((instrument) => ({
+    id: instrument.id,
+    symbol: instrument.symbol,
+    description: instrument.description,
+    type: instrument.type,
+    createdTime: new Date(instrument.createdTime),
   }));
 });
 </script>
