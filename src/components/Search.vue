@@ -1,13 +1,5 @@
 <template>
   <div>
-    
+    <input type="text" placeholder="Search" />
   </div>
 </template>
-
-<script lang="ts" setup>
-
-</script>
-
-<style>
-
-</style>

@@ -8,10 +8,7 @@
       {{ users.length }} user{{ users.length === 1 ? "" : "s" }} found
     </div>
 
-    <div class="search-bar">
-      <input class="search-input" type="search" placeholder="Search" />
-    </div>
-
+    <Search></Search>
     <div>
       <DataGrid :items="users"></DataGrid>
     </div>

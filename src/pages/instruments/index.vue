@@ -11,9 +11,7 @@
       found
     </div>
 
-    <div class="search-bar">
-      <input class="search-input" type="search" placeholder="Search" />
-    </div>
+    <Search></Search>
 
     <div>
       <DataGrid :items="instruments"></DataGrid>

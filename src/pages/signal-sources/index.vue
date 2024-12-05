@@ -4,6 +4,8 @@
       <button @click="navigateTo('/signal-sources/new')">
         New signal source
       </button>
+
+      <button>Delete</button>
     </div>
 
     <div class="result-info">
@@ -12,11 +14,7 @@
       }}
       found
     </div>
-
-    <div class="search-bar">
-      <input class="search-input" type="search" placeholder="Search" />
-    </div>
-
+    <Search></Search>
     <div>
       <DataGrid :items="signalSources"></DataGrid>
     </div>
