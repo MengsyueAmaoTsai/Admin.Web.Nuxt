@@ -44,6 +44,21 @@ export type InstrumentResponse = {
 
 export type InstrumentDetailsResponse = InstrumentResponse;
 
+export type CreateAccountRequest = {
+	userId: string;
+	name: string;
+};
+export type AccountCreatedResponse = CreatedResponse;
+
+export type AccountResponse = {
+	id: string;
+	userId: string;
+	name: string;
+	createdTime: Date;
+};
+
+export type AccountDetailsResponse = AccountResponse;
+
 export interface IResourceService {
 	listUsers(): Promise<UserResponse[]>;
 	createUser(request: CreateUserRequest): Promise<UserCreatedResponse>;
@@ -55,6 +70,10 @@ export interface IResourceService {
 		request: CreateInstrumentRequest,
 	): Promise<InstrumentCreatedResponse>;
 	getInstrument(symbol: string): Promise<InstrumentDetailsResponse>;
+
+	listAccounts(): Promise<AccountResponse[]>;
+	createAccount(request: CreateAccountRequest): Promise<AccountCreatedResponse>;
+	getAccount(id: string): Promise<AccountDetailsResponse>;
 }
 
 type ResourceOptions = {
@@ -105,6 +124,27 @@ class ResourceService implements IResourceService {
 		return await this.invoke<InstrumentDetailsResponse>(
 			"GET",
 			`/api/v1/instruments/${symbol}`,
+		);
+	}
+
+	public async listAccounts(): Promise<AccountResponse[]> {
+		return await this.invoke<AccountResponse[]>("GET", "/api/v1/accounts");
+	}
+
+	public async createAccount(
+		request: CreateAccountRequest,
+	): Promise<AccountCreatedResponse> {
+		return this.invoke<AccountCreatedResponse>(
+			"POST",
+			"/api/v1/accounts",
+			request,
+		);
+	}
+
+	public async getAccount(id: string): Promise<AccountDetailsResponse> {
+		return await this.invoke<AccountDetailsResponse>(
+			"GET",
+			`/api/v1/accounts/${id}`,
 		);
 	}
 
