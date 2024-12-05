@@ -32,13 +32,17 @@
 </template>
 
 <script setup lang="ts">
-const { $resourceService } = useNuxtApp();
-const route = useRoute();
-const userId = ref(route.params.userId);
+import type { IUserService, UserDetailsResponse } from "~/resources/users";
 
-const user = ref(null);
+const route = useRoute();
+const userId = ref<string>(route.params.userId as string);
+
+const userService = useNuxtApp().$userService as IUserService;
+
+const user = ref<UserDetailsResponse | null>(null);
+
 onMounted(async () => {
-  const response = await $resourceService.getUser(userId.value);
+  const response = await userService.getUser(userId.value);
   user.value = {
     id: response.id,
     email: response.email,

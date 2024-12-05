@@ -20,7 +20,9 @@
 </template>
 
 <script setup lang="ts">
-const { $resourceService } = useNuxtApp();
+import type { IUserService } from "~/resources/users";
+
+const userService = useNuxtApp().$userService as IUserService;
 
 const email = ref("");
 const name = ref("");
@@ -28,7 +30,7 @@ const password = ref("");
 
 const createUser = async () => {
   try {
-    const createdResponse = await $resourceService.createUser({
+    const createdResponse = await userService.createUser({
       email: email.value,
       name: name.value,
       password: password.value,

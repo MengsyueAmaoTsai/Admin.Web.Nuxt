@@ -43,20 +43,14 @@
 </template>
 
 <script setup lang="ts">
-const { $resourceService } = useNuxtApp();
+import type { IUserService, UserResponse } from "~/resources/users";
 
-const users = ref<
-  { id: string; email: string; name: string; createdTime: Date }[]
->([]);
+const userService = useNuxtApp().$userService as IUserService;
+
+const users = ref<UserResponse[]>([]);
 
 onMounted(async () => {
-  const responses = await $resourceService.listUsers();
-
-  users.value = responses.map((response) => ({
-    id: response.id,
-    email: response.email,
-    name: response.name,
-    createdTime: new Date(response.createdTime),
-  }));
+  const responses = await userService.listUsers();
+  users.value = responses;
 });
 </script>

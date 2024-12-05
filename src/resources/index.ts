@@ -115,7 +115,7 @@ class ResourceService implements IResourceService {
 }
 
 const requestHandler = new HttpRequestHandler("https://localhost:10000");
-const userService = new UserService(requestHandler);
+export const userService = new UserService(requestHandler);
 const instrumentService = new InstrumentService(requestHandler);
 const accountService = new AccountService(requestHandler);
 const signalSourceService = new SignalSourceService(requestHandler);
