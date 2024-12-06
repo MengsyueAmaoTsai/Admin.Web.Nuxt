@@ -2,35 +2,35 @@
   <div>
     <Button @click="navigateTo('/signal-sources')">Back to list</Button>
 
-    <div v-if="account">
+    <div v-if="signalSource">
       <div class="row">
         <div>Id</div>
-        <div>{{ account.id }}</div>
+        <div>{{ signalSource.id }}</div>
       </div>
 
       <div class="row">
         <div>Name</div>
-        <div>{{ account.name }}</div>
+        <div>{{ signalSource.name }}</div>
       </div>
 
       <div class="row">
         <div>Description</div>
-        <div>{{ account.description }}</div>
+        <div>{{ signalSource.description }}</div>
       </div>
 
       <div class="row">
         <div>Version</div>
-        <div>{{ account.version }}</div>
+        <div>{{ signalSource.version }}</div>
       </div>
 
       <div class="row">
         <div>Stage</div>
-        <div>{{ account.stage }}</div>
+        <div>{{ signalSource.stage }}</div>
       </div>
 
       <div class="row">
         <div>Created time</div>
-        <div>{{ account.createdTime }}</div>
+        <div>{{ signalSource.createdTime }}</div>
       </div>
     </div>
   </div>
@@ -48,10 +48,10 @@ const signalSourceId = ref<string>(route.params.signalSourceId as string);
 const signalSourceService = useNuxtApp()
   .$signalSourceService as ISignalSourceService;
 
-const account = ref<SignalSourceDetailsResponse | null>(null);
+const signalSource = ref<SignalSourceDetailsResponse | null>(null);
 
 onMounted(async () => {
-  account.value = await signalSourceService.getSignalSource(
+  signalSource.value = await signalSourceService.getSignalSource(
     signalSourceId.value
   );
 });
