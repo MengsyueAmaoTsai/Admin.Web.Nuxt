@@ -45,8 +45,7 @@ const instrumentService = useNuxtApp().$instrumentService as IInstrumentService;
 const instrument = ref<InstrumentDetailsResponse | null>(null);
 
 onMounted(async () => {
-  const response = await instrumentService.getInstrument(symbol.value);
-  instrument.value = response;
+  instrument.value = await instrumentService.getInstrument(symbol.value);
 });
 </script>
 
