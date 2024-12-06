@@ -8,6 +8,7 @@ export type CreateSignalSourceRequest = {
 	name: string;
 	description: string;
 	version: string;
+	stage: string;
 };
 
 export type SignalSourceResponse = {
@@ -15,6 +16,7 @@ export type SignalSourceResponse = {
 	name: string;
 	description: string;
 	version: string;
+	stage: string;
 	createdTime: Date;
 };
 
