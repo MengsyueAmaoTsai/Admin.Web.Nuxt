@@ -43,12 +43,7 @@ const user = ref<UserDetailsResponse | null>(null);
 
 onMounted(async () => {
   const response = await userService.getUser(userId.value);
-  user.value = {
-    id: response.id,
-    email: response.email,
-    name: response.name,
-    createdTime: new Date(response.createdTime),
-  };
+  user.value = response;
 });
 </script>
 
