@@ -8,7 +8,7 @@ import {
 import { type IUserService, UserService } from "./users";
 
 const requestHandler = new HttpRequestHandler("https://localhost:10000");
-export const userService = new UserService(requestHandler);
-export const instrumentService = new InstrumentService(requestHandler);
-export const accountService = new AccountService(requestHandler);
-export const signalSourceService = new SignalSourceService(requestHandler);
+export const userService = new UserService(requestHandler) as IUserService;
+export const instrumentService = new InstrumentService(requestHandler) as IInstrumentService;
+export const accountService = new AccountService(requestHandler) as IAccountService;
+export const signalSourceService = new SignalSourceService(requestHandler) as ISignalSourceService;
