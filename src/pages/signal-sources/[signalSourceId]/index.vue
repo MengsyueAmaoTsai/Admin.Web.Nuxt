@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Button @click="navigateTo('/signal-sources')">Back to list</Button>
+    <fluent-button appearance="accent" @click="navigateTo('/signal-sources')"
+      >Back to list</fluent-button
+    >
 
     <div v-if="signalSource">
       <div class="row">

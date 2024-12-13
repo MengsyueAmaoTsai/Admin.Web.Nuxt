@@ -2,19 +2,37 @@
   <div>
     <div class="row">
       <label>Symbol</label>
-      <input type="text" v-model="symbol" />
+      <fluent-text-field
+        required
+        @input="symbol = $event.target.value"
+      ></fluent-text-field>
     </div>
     <div class="row">
       <label>Description</label>
-      <input type="text" v-model="description" />
+      <fluent-text-field
+        required
+        @input="description = $event.target.value"
+      ></fluent-text-field>
     </div>
     <div class="row">
       <label>Type</label>
-      <input type="text" v-model="type" />
+      <fluent-select @change="type = $event.target.value">
+        <fluent-option
+          v-for="option in typeOptions"
+          :key="option"
+          :value="option"
+          >{{ option }}</fluent-option
+        >
+      </fluent-select>
     </div>
 
     <div class="row">
-      <Button @click="createUser">Create</Button>
+      <fluent-button
+        :disabled="!symbol || !description || !type || isBusy"
+        appearance="accent"
+        @click="createInstrument"
+        >Create</fluent-button
+      >
     </div>
   </div>
 </template>
@@ -23,12 +41,23 @@
 import type { IInstrumentService } from "~/resources/instruments";
 
 const instrumentService = useNuxtApp().$instrumentService as IInstrumentService;
+const isBusy = ref(false);
+const typeOptions = ref([
+  "Index",
+  "CryptoCurrency",
+  "Future",
+  "Option",
+  "Swap",
+  "Forward",
+  "MutualFund",
+]);
 
 const symbol = ref("");
 const description = ref("");
-const type = ref("");
+const type = ref(typeOptions.value[0]);
 
-const createUser = async () => {
+const createInstrument = async () => {
+  isBusy.value = true;
   try {
     const createdResponse = await instrumentService.createInstrument({
       symbol: symbol.value,
@@ -40,6 +69,8 @@ const createUser = async () => {
     navigateTo("/instruments");
   } catch (error) {
     alert(`Failed to create instrument: ${error}`);
+  } finally {
+    isBusy.value = false;
   }
 };
 </script>

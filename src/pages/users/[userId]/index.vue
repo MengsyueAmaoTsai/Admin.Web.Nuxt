@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Button @click="navigateTo('/users')">Back to list</Button>
+    <fluent-button appearance="accent" @click="navigateTo('/users')"
+      >Back to list</fluent-button
+    >
 
     <div v-if="user">
       <div class="row">

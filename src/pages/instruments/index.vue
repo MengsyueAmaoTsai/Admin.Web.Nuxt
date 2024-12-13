@@ -1,7 +1,9 @@
 <template>
   <div>
     <div>
-      <Button @click="navigateTo('/instruments/new')">New instrument</Button>
+      <fluent-button appearance="accent" @click="navigateTo('/instruments/new')"
+        >New instrument</fluent-button
+      >
     </div>
 
     <Search></Search>

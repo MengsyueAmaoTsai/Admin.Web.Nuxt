@@ -1,7 +1,9 @@
 <template>
   <div>
     <div>
-      <Button @click="navigateTo('/accounts/new')">New account</Button>
+      <fluent-button appearance="accent" @click="navigateTo('/accounts/new')"
+        >New account</fluent-button
+      >
     </div>
 
     <Search></Search>

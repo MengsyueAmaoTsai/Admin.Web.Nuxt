@@ -1,8 +1,10 @@
 <template>
   <div>
     <div>
-      <Button @click="navigateTo('/signal-sources/new')"
-        >New signal source</Button
+      <fluent-button
+        appearance="accent"
+        @click="navigateTo('/signal-sources/new')"
+        >New signal source</fluent-button
       >
     </div>
 

@@ -2,29 +2,43 @@
   <div>
     <div class="row">
       <label>Id</label>
-      <input type="text" v-model="id" />
+      <fluent-text-field
+        required
+        @input="id = $event.target.value"
+      ></fluent-text-field>
     </div>
 
     <div class="row">
       <label>Name</label>
-      <input type="text" v-model="name" />
+      <fluent-text-field
+        required
+        @input="name = $event.target.value"
+      ></fluent-text-field>
     </div>
 
     <div class="row">
       <label>Description</label>
-      <input type="text" v-model="description" />
+      <fluent-text-field required @input="description = $event.target.value">
+      </fluent-text-field>
     </div>
 
     <div class="row">
       <label>Version</label>
       <input type="text" v-model="version" />
     </div>
+
     <div class="row">
       <label>Stage</label>
       <input type="text" v-model="stage" />
     </div>
+
     <div class="row">
-      <Button @click="createUser">Create</Button>
+      <fluent-button
+        :disabled="!id || !name || !description"
+        appearance="accent"
+        @click="createSignalSource"
+        >Create</fluent-button
+      >
     </div>
   </div>
 </template>
@@ -41,7 +55,7 @@ const description = ref("");
 const version = ref("");
 const stage = ref("");
 
-const createUser = async () => {
+const createSignalSource = async () => {
   try {
     const createdResponse = await signalSourceService.createSignalSource({
       id: id.value,

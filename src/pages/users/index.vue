@@ -1,7 +1,9 @@
 <template>
   <div>
     <div>
-      <button @click="navigateTo('/users/new')">New user</button>
+      <fluent-button appearance="accent" @click="navigateTo('/users/new')"
+        >New user</fluent-button
+      >
     </div>
 
     <div>{{ users.length }} user{{ users.length <= 1 ? "" : "s" }} found</div>

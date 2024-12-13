@@ -2,15 +2,20 @@
   <div>
     <div class="row">
       <label>User Id</label>
-      <input type="text" v-model="userId" />
-    </div>
-    <div class="row">
-      <label>Name</label>
-      <input type="text" v-model="name" />
+      <fluent-text-field required @input="userId = $event.target.value">
+      </fluent-text-field>
     </div>
 
     <div class="row">
-      <Button @click="createUser">Create</Button>
+      <label>Name</label>
+      <fluent-text-field required @input="name = $event.target.value">
+      </fluent-text-field>
+    </div>
+
+    <div class="row">
+      <fluent-button appearance="accent" @click="createUser"
+        >Create</fluent-button
+      >
     </div>
   </div>
 </template>
