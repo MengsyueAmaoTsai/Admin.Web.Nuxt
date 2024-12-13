@@ -1,28 +1,42 @@
 <template>
   <div>
-    <!-- <div class="row">
+    <div class="row">
       <label>Account Id</label>
       <input type="text" v-model="accountId" />
-    </div> -->
-
-    <!-- <div class="row">
-      <label>Name</label>
-      <input type="text" v-model="name" />
     </div>
 
     <div class="row">
-      <label>Description</label>
-      <input type="text" v-model="description" />
+      <label>Symbol</label>
+      <input type="text" v-model="symbol" />
     </div>
 
     <div class="row">
-      <label>Version</label>
-      <input type="text" v-model="version" />
+      <label>Trade type</label>
+
+      <input type="radio" value="Buy" v-model="tradeType" /> Buy
+      <input type="radio" value="Sell" v-model="tradeType" /> Sell
     </div>
+
     <div class="row">
-      <label>Stage</label>
-      <input type="text" v-model="stage" />
-    </div> -->
+      <label>Order type</label>
+
+      <input type="radio" value="Market" v-model="orderType" /> Market
+      <input type="radio" value="Limit" v-model="orderType" /> Limit
+    </div>
+
+    <div class="row">
+      <label>Time in force</label>
+
+      <input type="radio" value="DAY" v-model="timeInForce" /> DAY
+      <input type="radio" value="IOC" v-model="timeInForce" /> IOC
+      <input type="radio" value="FOK" v-model="timeInForce" /> FOK
+    </div>
+
+    <div class="row">
+      <label>Quantity</label>
+      <input type="number" v-model="quantity" />
+    </div>
+
     <div class="row">
       <Button @click="createUser">Create</Button>
     </div>

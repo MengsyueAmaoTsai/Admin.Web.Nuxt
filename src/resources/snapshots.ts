@@ -3,6 +3,8 @@ import type { CreatedResponse, IHttpRequestHandler } from "./shared";
 export type CreateSnapshotRequest = {
 	signalSourceId: string;
 	time: Date;
+	barTime: Date;
+	lastPrice: number;
 };
 
 export type SnapshotResponse = {
@@ -10,6 +12,8 @@ export type SnapshotResponse = {
 	signalSourceId: string;
 	time: Date;
 	latency: number;
+	barTime: Date;
+	lastPrice: number;
 	createdTime: Date;
 };
 
