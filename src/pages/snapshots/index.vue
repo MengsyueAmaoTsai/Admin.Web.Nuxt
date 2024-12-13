@@ -7,9 +7,7 @@
     <Search></Search>
 
     <div>
-      {{ snapshots.length }} snapshot{{
-        snapshots.length <= 1 ? "" : "s"
-      }}
+      {{ snapshots.length }} snapshot{{ snapshots.length <= 1 ? "" : "s" }}
       found
     </div>
 
@@ -36,7 +34,9 @@
           <td><input type="checkbox" /></td>
           <td>{{ snapshot.id }}</td>
           <td>
-            {{ snapshot.signalSourceId }}
+            <a :href="`/signal-sources/${snapshot.signalSourceId}`">
+              {{ snapshot.signalSourceId }}
+            </a>
           </td>
           <td>{{ snapshot.time.toLocaleString() }}</td>
           <td>{{ snapshot.latency }}</td>
