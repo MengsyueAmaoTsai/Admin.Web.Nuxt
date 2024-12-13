@@ -1,7 +1,13 @@
 <template>
-  <h2>RichillCapital services</h2>
-  <h2>Resources</h2>
-  <h2>Navigate</h2>
-  <h2>Tools</h2>
-  <h2>Useful links</h2>
+  <div style="display: flex; flex-direction: column">
+    <a href="/users">Users</a>
+
+    <a href="/instruments">Instruments</a>
+
+    <a href="/accounts">Accounts</a>
+    <a href="/orders">Orders</a>
+
+    <a href="/signal-sources">Signal sources</a>
+    <a href="/snapshots">Snapshots</a>
+  </div>
 </template>
