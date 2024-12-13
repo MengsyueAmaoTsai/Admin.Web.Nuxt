@@ -12,5 +12,11 @@ export default defineNuxtConfig({
 		modules: "modules",
 		assets: "assets",
 	},
+	plugins: [
+		{
+			src: "~/plugins/fluentui.plugin.ts",
+			mode: "client",
+		},
+	],
 	css: ["~/assets/styles/main.scss"],
 });

@@ -13,6 +13,8 @@
     "test": "echo 'No test configured'"
   },
   "dependencies": {
+    "@fluentui/web-components": "^2.6.1",
+    "@microsoft/fast-element": "^2.0.1",
     "nuxt": "^3.14.1592",
     "vue": "latest",
     "vue-router": "latest"
