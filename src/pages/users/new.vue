@@ -2,19 +2,38 @@
   <div>
     <div class="row">
       <label>Email</label>
-      <input type="email" v-model="email" />
-    </div>
-    <div class="row">
-      <label>Name</label>
-      <input type="text" v-model="name" />
-    </div>
-    <div class="row">
-      <label>Password</label>
-      <input type="password" v-model="password" />
+      <fluent-text-field
+        placeholder="someone@example.com"
+        required
+        @input="email = $event.target.value"
+      ></fluent-text-field>
     </div>
 
     <div class="row">
-      <button @click="createUser">Create</button>
+      <label>Name</label>
+      <fluent-text-field
+        required
+        @input="name = $event.target.value"
+      ></fluent-text-field>
+    </div>
+
+    <div class="row">
+      <label>Password</label>
+      <fluent-text-field
+        required
+        type="password"
+        @input="password = $event.target.value"
+      >
+      </fluent-text-field>
+    </div>
+
+    <div class="row">
+      <fluent-button
+        @click="createUser"
+        appearance="accent"
+        :disabled="!email || !name || !password || isBusy"
+        >Create</fluent-button
+      >
     </div>
   </div>
 </template>
@@ -24,11 +43,15 @@ import type { IUserService } from "~/resources/users";
 
 const userService = useNuxtApp().$userService as IUserService;
 
+const isBusy = ref(false);
+
 const email = ref("");
 const name = ref("");
 const password = ref("");
 
 const createUser = async () => {
+  isBusy.value = true;
+
   try {
     const createdResponse = await userService.createUser({
       email: email.value,
@@ -40,6 +63,8 @@ const createUser = async () => {
     navigateTo("/users");
   } catch (error) {
     alert(`Failed to create user: ${error}`);
+  } finally {
+    isBusy.value = false;
   }
 };
 </script>
