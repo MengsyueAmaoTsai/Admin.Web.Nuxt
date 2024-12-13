@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Button @click="navigateTo('/instruments')">Back to list</Button>
+    <button @click="navigateTo('/instruments')">Back to list</button>
 
     <div v-if="instrument">
       <div class="row">

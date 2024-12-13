@@ -14,7 +14,7 @@
     </div>
 
     <div class="row">
-      <Button @click="createUser">Create</Button>
+      <button @click="createUser">Create</button>
     </div>
   </div>
 </template>

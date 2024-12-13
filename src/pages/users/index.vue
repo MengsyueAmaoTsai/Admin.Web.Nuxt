@@ -1,10 +1,8 @@
 <template>
   <div>
     <div>
-      <Button @click="navigateTo('/users/new')">New user</Button>
+      <button @click="navigateTo('/users/new')">New user</button>
     </div>
-
-    <Search></Search>
 
     <div>{{ users.length }} user{{ users.length <= 1 ? "" : "s" }} found</div>
 
