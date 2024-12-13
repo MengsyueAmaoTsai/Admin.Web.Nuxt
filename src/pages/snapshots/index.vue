@@ -1,12 +1,6 @@
 <template>
   <div>
     <div>
-      <Button @click="navigateTo('/snapshots/new')">New snapshot</Button>
-    </div>
-
-    <Search></Search>
-
-    <div>
       {{ snapshots.length }} snapshot{{ snapshots.length <= 1 ? "" : "s" }}
       found
     </div>
