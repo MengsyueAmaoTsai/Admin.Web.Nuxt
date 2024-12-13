@@ -1,5 +1,6 @@
 import { AccountService, type IAccountService } from "./accounts";
 import { type IInstrumentService, InstrumentService } from "./instruments";
+import { type IOrderService, OrderService } from "./orders";
 import { HttpRequestHandler } from "./shared";
 import {
 	type ISignalSourceService,
@@ -17,6 +18,9 @@ export const instrumentService = new InstrumentService(
 export const accountService = new AccountService(
 	requestHandler,
 ) as IAccountService;
+
+export const orderService = new OrderService(requestHandler) as IOrderService;
+
 export const signalSourceService = new SignalSourceService(
 	requestHandler,
 ) as ISignalSourceService;
