@@ -21,6 +21,7 @@
           <th>Signal source id</th>
           <th>Time</th>
           <th>Latency (ms)</th>
+          <th>Symbol</th>
           <th>Bar time</th>
           <th>Last price</th>
           <th>Created time</th>
@@ -42,6 +43,7 @@
           </td>
           <td>{{ snapshot.time.toLocaleString() }}</td>
           <td>{{ snapshot.latency }}</td>
+          <td>{{ snapshot.symbol }}</td>
           <td>{{ snapshot.barTime.toLocaleString() }}</td>
           <td>{{ snapshot.lastPrice }}</td>
           <td>{{ snapshot.createdTime.toLocaleString() }}</td>
