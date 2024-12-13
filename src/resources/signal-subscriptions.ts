@@ -20,6 +20,7 @@ export interface ISignalSubscriptionService {
 		request: CreateSignalSubscriptionRequest,
 	): Promise<SignalSubscriptionCreatedResponse>;
 	listSignalSubscriptions(): Promise<SignalSubscriptionResponse[]>;
+	getSignalSubscription(id: string): Promise<SignalSubscriptionDetailsResponse>;
 }
 
 export class SignalSubscriptionService implements ISignalSubscriptionService {
@@ -41,6 +42,15 @@ export class SignalSubscriptionService implements ISignalSubscriptionService {
 		return this.requestHandler.invoke<SignalSubscriptionResponse[]>(
 			"GET",
 			"/api/v1/signal-subscriptions",
+		);
+	}
+
+	public async getSignalSubscription(
+		id: string,
+	): Promise<SignalSubscriptionDetailsResponse> {
+		return this.requestHandler.invoke<SignalSubscriptionDetailsResponse>(
+			"GET",
+			`/api/v1/signal-subscriptions/${id}`,
 		);
 	}
 }

@@ -9,5 +9,6 @@
 
     <a href="/signal-sources">Signal sources</a>
     <a href="/snapshots">Snapshots</a>
+    <a href="/signal-subscriptions">Signal subscriptions</a>
   </div>
 </template>
