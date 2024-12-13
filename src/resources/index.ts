@@ -6,6 +6,10 @@ import {
 	type ISignalSourceService,
 	SignalSourceService,
 } from "./signal-sources";
+import {
+	type ISignalSubscriptionService,
+	SignalSubscriptionService,
+} from "./signal-subscriptions";
 import { type ISnapshotService, SnapshotService } from "./snapshots";
 import { type IUserService, UserService } from "./users";
 
@@ -27,3 +31,7 @@ export const signalSourceService = new SignalSourceService(
 export const snapshotService = new SnapshotService(
 	requestHandler,
 ) as ISnapshotService;
+
+export const signalSubscriptionService = new SignalSubscriptionService(
+	requestHandler,
+) as ISignalSubscriptionService;
