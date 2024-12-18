@@ -18,6 +18,7 @@
           <th>Symbol</th>
           <th>Bar time</th>
           <th>Last price</th>
+          <th>Message</th>
           <th>Created time</th>
         </tr>
       </thead>
@@ -40,6 +41,7 @@
           <td>{{ snapshot.symbol }}</td>
           <td>{{ snapshot.barTime.toLocaleString() }}</td>
           <td>{{ snapshot.lastPrice }}</td>
+          <td>{{ snapshot.message }}</td>
           <td>{{ snapshot.createdTime.toLocaleString() }}</td>
         </tr>
       </tbody>

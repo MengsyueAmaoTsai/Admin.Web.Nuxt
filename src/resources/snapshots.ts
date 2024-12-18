@@ -16,6 +16,7 @@ export type SnapshotResponse = {
 	symbol: string;
 	barTime: Date;
 	lastPrice: number;
+	message: string;
 	createdTime: Date;
 };
 
