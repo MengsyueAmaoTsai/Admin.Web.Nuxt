@@ -30,7 +30,11 @@
 
         <tr v-for="snapshot of snapshots">
           <td><input type="checkbox" /></td>
-          <td>{{ snapshot.id }}</td>
+          <td>
+            <a :href="`/snapshots/${snapshot.id}`">
+              {{ snapshot.id }}
+            </a>
+          </td>
           <td>
             <a :href="`/signal-sources/${snapshot.signalSourceId}`">
               {{ snapshot.signalSourceId }}
