@@ -1,10 +1,10 @@
 <template>
   <div>
     <div>
-      <Button @click="navigateTo('/orders/new')">New order</Button>
+      <fluent-button appearance="accent" @click="navigateTo('/orders/new')"
+        >New order</fluent-button
+      >
     </div>
-
-    <Search></Search>
 
     <div>
       {{ orders.length }} order{{ orders.length <= 1 ? "" : "s" }}

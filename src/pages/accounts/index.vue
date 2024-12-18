@@ -6,8 +6,6 @@
       >
     </div>
 
-    <Search></Search>
-
     <div>
       {{ accounts.length }} account{{ accounts.length <= 1 ? "" : "s" }}
       found

@@ -8,8 +8,6 @@
       >
     </div>
 
-    <Search></Search>
-
     <div>
       {{ signalSources.length }} signal source{{
         signalSources.length <= 1 ? "" : "s"

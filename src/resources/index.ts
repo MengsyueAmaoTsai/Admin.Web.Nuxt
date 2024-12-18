@@ -13,9 +13,7 @@ import {
 import { type ISnapshotService, SnapshotService } from "./snapshots";
 import { type IUserService, UserService } from "./users";
 
-const requestHandler = new HttpRequestHandler(
-	"https://grouse-decent-lemur.ngrok-free.app",
-);
+const requestHandler = new HttpRequestHandler("https://localhost:10000");
 
 export const userService = new UserService(requestHandler) as IUserService;
 export const instrumentService = new InstrumentService(

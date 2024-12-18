@@ -6,8 +6,6 @@
       >
     </div>
 
-    <Search></Search>
-
     <div>
       {{ instruments.length }} instrument{{
         instruments.length <= 1 ? "" : "s"
