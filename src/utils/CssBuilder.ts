@@ -35,10 +35,8 @@ export class CssBuilder {
 	): CssBuilder {
 		if (typeof when === "undefined") {
 			if (arg1) {
-				if (arg1) {
-					for (const cls of this.splitAndValidate(arg1)) {
-						this.classes.add(cls);
-					}
+				for (const cls of this.splitAndValidate(arg1.trim())) {
+					this.classes.add(cls);
 				}
 			}
 		} else if (typeof when === "boolean") {
@@ -76,6 +74,7 @@ export class CssBuilder {
 	private splitAndValidate(input: string): string[] {
 		return input
 			.split(" ")
+			.map((className) => className.trim())
 			.filter((className) => this.isValidClassName(className));
 	}
 }
