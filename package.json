@@ -10,12 +10,13 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "echo 'No linting configured'",
-    "test": "echo 'No test configured'"
+    "test": "vitest run"
   },
   "dependencies": {
     "@fluentui/web-components": "^2.6.1",
     "@microsoft/fast-element": "^2.0.1",
     "nuxt": "^3.14.1592",
+    "vitest": "^2.1.8",
     "vue": "latest",
     "vue-router": "latest"
   },

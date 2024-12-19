@@ -1,59 +1,53 @@
 export class CssBuilder {
-	private classes: Set<string>;
-	private userClasses: string[] | undefined;
 	private static readonly validClassNameRegex = /^-?[_a-zA-Z]+[_a-zA-Z0-9-]*$/;
-	public static validateClassNames = true;
-	private validateClassNames: boolean;
+	private readonly classes: Set<string>;
+	private readonly userClasses: string[] | undefined;
 
-	// Constructors overloads
+	private readonly validateClassNames: boolean;
+	public static validateClassNames = true;
+
 	public constructor();
+	public constructor(userClasses: string | undefined);
 	public constructor(
 		validateClassNames: boolean,
 		userClasses: string | undefined,
 	);
-	public constructor(userClasses: string | undefined);
-
-	// Implementation
-	public constructor(
-		arg1?: boolean | string | undefined,
-		arg2?: string | undefined,
-	) {
+	public constructor(arg1?: string | boolean, arg2?: string) {
 		this.classes = new Set<string>();
 		this.userClasses = undefined;
 
 		if (typeof arg1 === "boolean") {
 			this.validateClassNames = arg1;
 			this.userClasses = arg2 ? this.splitAndValidate(arg2) : undefined;
-		} else {
-			this.validateClassNames = CssBuilder.validateClassNames;
-			this.userClasses = arg1 ? this.splitAndValidate(arg1) : undefined;
+			return;
 		}
+
+		this.validateClassNames = CssBuilder.validateClassNames;
+		this.userClasses = arg1 ? this.splitAndValidate(arg1) : undefined;
 	}
 
-	// Overload signatures
 	public addClass(values: string | undefined): CssBuilder;
 	public addClass(values: string | undefined, when: boolean): CssBuilder;
 	public addClass(values: string | undefined, when: () => boolean): CssBuilder;
-
-	// Implementation
 	public addClass(
-		values: string | undefined,
+		arg1: string | undefined,
 		when?: boolean | (() => boolean),
 	): CssBuilder {
 		if (typeof when === "undefined") {
-			if (values) {
-				this.classes = new Set([
-					...this.classes,
-					...this.splitAndValidate(values),
-				]);
+			if (arg1) {
+				if (arg1) {
+					for (const cls of this.splitAndValidate(arg1)) {
+						this.classes.add(cls);
+					}
+				}
 			}
 		} else if (typeof when === "boolean") {
 			if (when) {
-				this.addClass(values);
+				this.addClass(arg1);
 			}
 		} else if (typeof when === "function") {
 			if (when()) {
-				this.addClass(values);
+				this.addClass(arg1);
 			}
 		}
 		return this;
@@ -63,7 +57,9 @@ export class CssBuilder {
 		const allClasses = this.userClasses
 			? new Set([...this.classes, ...this.userClasses])
 			: this.classes;
+
 		const result = Array.from(allClasses).join(" ");
+
 		return result.trim() ? result : undefined;
 	}
 
