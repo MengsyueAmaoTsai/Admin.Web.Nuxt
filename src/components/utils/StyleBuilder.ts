@@ -1,32 +1,34 @@
 export class StyleBuilder {
 	private styles: Set<string>;
-	private userStyles: string | null;
+	private userStyles: string | undefined;
 
 	constructor();
-	constructor(userStyles: string | null);
-	constructor(userStyles?: string | null) {
+	constructor(userStyles: string | undefined);
+	constructor(userStyles?: string | undefined) {
 		this.styles = new Set<string>();
-		this.userStyles = userStyles ? this.processUserStyles(userStyles) : null;
+		this.userStyles = userStyles
+			? this.processUserStyles(userStyles)
+			: undefined;
 	}
 
 	// Overload signatures
-	public addStyle(style: string | null): StyleBuilder;
-	public addStyle(prop: string, value: string | null): StyleBuilder;
+	public addStyle(style: string | undefined): StyleBuilder;
+	public addStyle(prop: string, value: string | undefined): StyleBuilder;
 	public addStyle(
 		prop: string,
-		value: string | null,
+		value: string | undefined,
 		when: boolean,
 	): StyleBuilder;
 	public addStyle(
 		prop: string,
-		value: string | null,
+		value: string | undefined,
 		when: () => boolean,
 	): StyleBuilder;
 
 	// Implementation
 	public addStyle(
 		propOrStyle: string,
-		value?: string | null,
+		value?: string | undefined,
 		when?: boolean | (() => boolean),
 	): StyleBuilder {
 		if (typeof value === "undefined") {
@@ -41,12 +43,12 @@ export class StyleBuilder {
 		return this;
 	}
 
-	public build(): string | null {
+	public build(): string | undefined {
 		const allStyles = this.userStyles
 			? new Set([...this.styles, this.userStyles])
 			: this.styles;
 		if (allStyles.size === 0) {
-			return null;
+			return undefined;
 		}
 		return Array.from(allStyles)
 			.map((s) => `${s};`)
@@ -54,11 +56,11 @@ export class StyleBuilder {
 			.trim();
 	}
 
-	public toString(): string | null {
+	public toString(): string | undefined {
 		return this.build();
 	}
 
-	private addRaw(style: string | null): StyleBuilder {
+	private addRaw(style: string | undefined): StyleBuilder {
 		if (style && style.trim()) {
 			this.styles.add(style.trim().replace(/;$/, ""));
 		}
