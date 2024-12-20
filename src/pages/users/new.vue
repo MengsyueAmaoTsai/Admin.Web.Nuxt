@@ -2,11 +2,7 @@
   <div>
     <div class="row">
       <label>Email</label>
-      <fluent-text-field
-        placeholder="someone@example.com"
-        required
-        @input="email = $event.target.value"
-      ></fluent-text-field>
+      <TextField v-model="email" placeholder="someone@example.com"></TextField>
     </div>
 
     <div class="row">

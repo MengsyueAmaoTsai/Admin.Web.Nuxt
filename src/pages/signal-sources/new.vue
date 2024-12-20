@@ -4,31 +4,24 @@
 
     <div class="row">
       <label>Id</label>
-      <fluent-text-field
-        required
-        @input="id = $event.target.value"
-      ></fluent-text-field>
+      <TextField v-model="id" placeholder="Signal source Id"></TextField>
     </div>
 
     <div class="row">
       <label>Name</label>
-      <fluent-text-field
-        required
-        @input="name = $event.target.value"
-      ></fluent-text-field>
+      <TextField v-model="name" placeholder="Signal source name"></TextField>
     </div>
 
     <div class="row">
       <label>Description</label>
-      <fluent-text-field required @input="description = $event.target.value">
-      </fluent-text-field>
+      <TextField v-model="description" placeholder="Description"></TextField>
     </div>
 
     <div class="row">
       <label>Version</label>
-      <input type="number" v-model="versionMajor" />
-      <input type="number" v-model="versionMinor" />
-      <input type="number" v-model="versionPatch" />
+      <NumberField v-model="versionMajor"></NumberField>
+      <NumberField v-model="versionMinor"></NumberField>
+      <NumberField v-model="versionPatch"></NumberField>
     </div>
 
     <div class="row">
