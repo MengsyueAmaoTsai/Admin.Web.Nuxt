@@ -7,3 +7,5 @@
 ```powershell
 pnpm run dev -o
 ```
+
+/virtualMachines/richillcapital/overview

@@ -38,7 +38,7 @@
         <tr v-for="source of signalSources">
           <td><input type="checkbox" /></td>
           <td>
-            <a :href="`/signal-sources/${source.id}`">
+            <a :href="`/signal-sources/${source.id}/overview`">
               {{ source.id }}
             </a>
           </td>
