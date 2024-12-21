@@ -8,7 +8,7 @@
       @onclosecolumnresize="closeColumnResize"
     >
       <thead>
-        <DataGridRow>Row Child content</DataGridRow>
+        <DataGridRow>DataGridRow </DataGridRow>
       </thead>
       <tbody></tbody>
     </table>
@@ -20,6 +20,10 @@ const props = defineProps({
   id: String,
   classValue: String,
   styleValue: String,
+
+  columns: {
+    type: Array as PropType<any[]>,
+  },
   items: {
     type: Array as PropType<any[]>,
     required: true,
