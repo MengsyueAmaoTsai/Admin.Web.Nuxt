@@ -1,15 +1,16 @@
 <template>
   <div v-if="$props.visible">
-    <fluent-progress-ring
+    <fluent-progress
       :id="$props.id"
       :class="$props.classValue"
       :style="$props.styleValue"
       :min="$props.min"
       :max="$props.max"
       :value="$props.modelValue"
+      :paused="$props.paused"
     >
-      <slot
-    /></fluent-progress-ring>
+      <slot />
+    </fluent-progress>
   </div>
 </template>
 
@@ -28,4 +29,5 @@ const props = defineProps({
   modelValue: Number,
 });
 </script>
-<style scoped lang="scss"></style>
+
+<style></style>
