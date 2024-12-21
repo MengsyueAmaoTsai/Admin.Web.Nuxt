@@ -2,14 +2,12 @@
   <div>
     <div class="row">
       <label>User Id</label>
-      <fluent-text-field required @input="userId = $event.target.value">
-      </fluent-text-field>
+      <TextField v-model="userId" placeholder="User ID"></TextField>
     </div>
 
     <div class="row">
       <label>Name</label>
-      <fluent-text-field required @input="name = $event.target.value">
-      </fluent-text-field>
+      <TextField v-model="name" placeholder="Account name"></TextField>
     </div>
 
     <div class="row">
