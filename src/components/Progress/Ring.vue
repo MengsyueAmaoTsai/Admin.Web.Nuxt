@@ -8,8 +8,8 @@
       :max="$props.max"
       :value="$props.modelValue"
     >
-      <slot
-    /></fluent-progress-ring>
+      <slot></slot>
+    </fluent-progress-ring>
   </div>
 </template>
 

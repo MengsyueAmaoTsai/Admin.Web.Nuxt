@@ -2,8 +2,8 @@
   <div v-if="$props.visible">
     <fluent-progress
       :id="$props.id"
-      :class="$props.classValue"
-      :style="$props.styleValue"
+      :class="builtClassValue"
+      :style="builtStyleValue"
       :min="$props.min"
       :max="$props.max"
       :value="$props.modelValue"
@@ -21,13 +21,28 @@ const props = defineProps({
   styleValue: String,
   min: Number,
   max: Number,
+  modelValue: Number,
   visible: {
     type: Boolean,
     default: true,
   },
+  width: String,
+  // stroke
+  // color
+  // backgroundColor
   paused: Boolean,
-  modelValue: Number,
 });
+
+const builtClassValue = new CssBuilder(props.classValue).build();
+
+const builtStyleValue = new StyleBuilder(props.styleValue)
+  .addStyle(
+    "width",
+    props.width,
+    () =>
+      props.width !== undefined && props.width !== null && props.width !== ""
+  )
+  .build();
 </script>
 
 <style></style>
