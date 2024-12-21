@@ -15,6 +15,15 @@
       found
     </div>
 
+    <DataGrid :items="signalSources">
+      <PropertyColumn :property="(item) => item.id"></PropertyColumn>
+      <PropertyColumn :property="(item) => item.name"></PropertyColumn>
+      <PropertyColumn :property="(item) => item.description"></PropertyColumn>
+      <PropertyColumn :property="(item) => item.version"></PropertyColumn>
+      <PropertyColumn :property="(item) => item.stage"></PropertyColumn>
+      <PropertyColumn :property="(item) => item.createdTime"></PropertyColumn>
+    </DataGrid>
+
     <table>
       <thead>
         <tr>
