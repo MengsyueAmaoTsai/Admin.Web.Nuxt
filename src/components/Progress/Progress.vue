@@ -8,13 +8,17 @@
       :max="$props.max"
       :value="$props.modelValue"
       :paused="$props.paused"
-    >
-      <slot />
+      ><slot />
     </fluent-progress>
   </div>
 </template>
 
 <script setup lang="ts">
+enum ProgressStroke {
+  Small = "Small",
+  Normal = "Normal",
+  Large = "Large",
+}
 const props = defineProps({
   id: String,
   classValue: String,
@@ -27,9 +31,12 @@ const props = defineProps({
     default: true,
   },
   width: String,
-  // stroke
-  // color
-  // backgroundColor
+  stroke: {
+    type: String as PropType<ProgressStroke>,
+    default: ProgressStroke.Normal,
+  },
+  color: String,
+  backgroundColor: String,
   paused: Boolean,
 });
 
